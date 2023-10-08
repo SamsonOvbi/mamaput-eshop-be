@@ -1,13 +1,13 @@
 "use strict";
 
-import express from 'express';
-import asyncHandler from 'express-async-handler';
-import { UserModel } from '../db/models/user.model';
-import { isAdmin, isAuth } from '../utils';
-import { ProductModel } from '../db/models/product.model';
-import { products, users } from '../sample-data';
+const express = require('express');
+const asyncHandler = require('express-async-handler');
+const UserModel = require('../db/models/user.model');
+const { isAdmin, isAuth } = require('../utils');
+const ProductModel = require('../db/models/product.model');
+const { products, users } = require('../sample-data');
 
-export const productRouter = express.Router();
+const productRouter = express.Router();
 
 productRouter.get(
   '/',
@@ -205,3 +205,5 @@ productRouter.post(
     }
   })
 );
+
+module.exports = productRouter

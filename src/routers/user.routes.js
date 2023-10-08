@@ -1,15 +1,14 @@
 "use strict";
 
-import express from 'express';
-import asyncHandler from 'express-async-handler';
-import { UserModel } from '../db/models/user.model';
-import bcrypt from 'bcryptjs';
-import { generateToken, isAdmin, isAuth } from '../utils';
+const express = require('express');
+const asyncHandler = require('express-async-handler');
+const UserModel = require('../db/models/user.model');
+const bcrypt = require('bcryptjs');
+const { generateToken, isAdmin, isAuth } = require('../utils');
 
-export const userRouter = express.Router();
+const userRouter = express.Router();
 
-userRouter.post(
-  '/login',
+userRouter.post( '/login',
   asyncHandler(async (req, res) => {
     const user = await UserModel.findOne({ email: req.body.email });
     if (user) {
@@ -59,9 +58,7 @@ userRouter.get(
     }
   })
 );
-userRouter.put(
-  '/update-profile',
-  isAuth,
+userRouter.put( '/update-profile', isAuth,
   asyncHandler(async (req, res) => {
     const user = await UserModel.findById(req.user._id);
     if (user) {
@@ -130,3 +127,5 @@ userRouter.put(
     }
   })
 );
+
+module.exports = userRouter;

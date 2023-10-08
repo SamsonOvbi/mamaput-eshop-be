@@ -1,10 +1,10 @@
 "use strict";
 
-// import { Product } from './db/models/product.model';
-// import { User } from './db/models/user.model';
-import bcrypt from 'bcryptjs';
+// const Product = require('./db/models/product.model');
+// const User = require('./db/models/user.model');
+const bcrypt = require('bcryptjs');
 
-export const products = [
+const productData = [
   {
     name: 'Nike Slim Shirt',
     slug: 'nike-slim-shirt',
@@ -85,7 +85,7 @@ export const products = [
   },
 ];
 
-export const users = [
+const userData = [
   {
     name: 'Joe Admin',
     email: 'joe.admin@example.com',
@@ -111,3 +111,5 @@ export const users = [
     isAdmin: true,
   }
 ];
+
+module.exports = { productData, userData };

@@ -3,8 +3,8 @@
 var mongoose = require('mongoose');
 // var Schema = mongoose.Schema;
 
-import { Product } from './product.model';
-import { UserModel } from './user.model';
+const Product = require('./product.model');
+const UserModel = require('./user.model');
 
 var ShippingAddressSchema = new mongoose.Schema({
   fullName: { type: String, required: true },

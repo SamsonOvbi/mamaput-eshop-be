@@ -1,11 +1,11 @@
 "use strict";
 
-import express from 'express';
-import asyncHandler from 'express-async-handler';
-import { UserModel } from '../db/models/user.model';
-import { isAdmin, isAuth } from '../utils';
-import { OrderModel } from '../db/models/order.model';
-import { ProductModel } from '../db/models/product.model';
+const express = require('express');
+const asyncHandler = require('express-async-handler');
+const UserModel = require('../db/models/user.model');
+const { isAdmin, isAuth } = require('../utils');
+const OrderModel = require('../db/models/order.model');
+const ProductModel = require('../db/models/product.model');
 
 const orderRouter = express.Router();
 

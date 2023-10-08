@@ -1,13 +1,13 @@
 "use strict";
 
-import multer from 'multer';
-import { v2 as cloudinary } from 'cloudinary';
-import streamifier from 'streamifier';
-import express from 'express';
-// import asyncHandler from 'express-async-handler';
-import { isAdmin, isAuth } from '../utils';
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const streamifier = require('streamifier');
+const express = require('express');
+const asyncHandler = require('express-async-handler');
+const { isAdmin, isAuth } = require('../utils');
 
-export const uploadRouter = express.Router();
+const uploadRouter = express.Router();
 
 const upload = multer();
 uploadRouter.post(
@@ -16,7 +16,7 @@ uploadRouter.post(
   isAdmin,
   upload.single('image'),
 
-  //asyncHandler(
+  asyncHandler(
   async (req, res) => {
     cloudinary.config({
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -41,7 +41,7 @@ uploadRouter.post(
     const result = await streamUpload(req);
     res.send(result);
   }
-  //)
+  )
 );
 
 // LOCAL UPLOAD
@@ -59,3 +59,4 @@ uploadRouter.post(
 // uploadRouter.post('/', isAuth, upload.single('image'), (req, res) => {
 //   res.send({ image: `/${req.file.path}` });
 // });
+module.exports = uploadRouter;

@@ -1,15 +1,15 @@
 "use strict";
 
-import cors from 'cors';
-// import path from 'path';
-import dotenv from 'dotenv';
-import express from 'express';
+const cors = require('cors');
+// const path = require('path');
+const dotenv = require('dotenv');
+const express = require('express');
 const connectDB = require('./db/connection');
-import { userRouter } from './routers/user.routes';
-import { orderRouter } from './routers/order.routes';
-import { productRouter } from './routers/product.routes';
-import { uploadRouter } from './routers/upload.routes';
-// import { log } from 'console';
+const userRouter = require('./routers/user.routes');
+const orderRouter = require('./routers/order.routes');
+const productRouter = require('./routers/product.routes');
+const uploadRouter = require('./routers/upload.routes');
+// const log = require('console');
 
 dotenv.config();
 
