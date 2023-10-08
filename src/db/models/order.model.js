@@ -1,10 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
-// var Schema = mongoose.Schema;
-
-const Product = require('./product.model');
-const UserModel = require('./user.model');
+var Schema = mongoose.Schema;
 
 var ShippingAddressSchema = new mongoose.Schema({
   fullName: { type: String, required: true },
@@ -21,7 +18,7 @@ var ItemSchema = new mongoose.Schema({
   quantity: { type: String, required: true },
   image: { type: Number, required: true },
   price: Number,
-  product: { type: Product },
+  product: { type: Schema.Types.ObjectId, ref: 'Product'},
 });
 
 var PaymentResultSchema = new mongoose.Schema({
@@ -29,18 +26,19 @@ var PaymentResultSchema = new mongoose.Schema({
   paymentId: { type: String },
   status: { type: String },
   update_time: { type: String },
-
   email_address: { type: String },
 });
 
-// @modelOptions({ schemaOptions: { timestamps: true } })
 var OrderSchema = new mongoose.Schema({
   _id: { type: String },
-  items: { type: ItemSchema },
-  shippingAddress: { type: ShippingAddressSchema },
-  user: { type: UserModel },
+  // items: [{ type: Schema.Types.ObjectId, ref: 'Item'}],
+  items: [ ItemSchema ],
+  // shippingAddress: { type: Schema.Types.ObjectId, ref: 'ShippingAddress'},
+    shippingAddress: ShippingAddressSchema,
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
   paymentMethod: { type: String },
-  paymentResult: { type: PaymentResultSchema },
+  // paymentResult: { type: Schema.Types.ObjectId, ref: 'PaymentResult'},
+  paymentResult: PaymentResultSchema,
   itemsPrice: { type: Number, required: true, default: 0 },
   shippingPrice: { type: Number, required: true, default: 0 },
   taxPrice: { type: Number, required: true, default: 0 },
@@ -49,6 +47,7 @@ var OrderSchema = new mongoose.Schema({
   paidAt: Date,
   isDelivered: { type: Boolean, required: true, default: false },
   deliveredAt: Date
-});
+}, {timestamps: true});
 
-module.exports = { ShippingAddressSchema, PaymentResultSchema, ItemSchema, OrderSchema  }
+const OrderModel = mongoose.model('Order', OrderSchema);
+module.exports = OrderModel;

@@ -2,13 +2,13 @@
 
 const mongoose = require("mongoose");
 
-var ReviewSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
   name: { type: String, required: true },
   comment: { type: String, required: true },
   rating: { type: Number, required: true },
-});
+}, { timeStamps: true });
 
-var ProductSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
   _id: { type: String },
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
@@ -20,8 +20,9 @@ var ProductSchema = new mongoose.Schema({
   countInStock: { type: Number, required: true, default: 0 },
   rating: { type: Number, required: true, default: 0 },
   numReviews: { type: Number, required: true, default: 0 },
-  reviews: { type: ReviewSchema}
-});
+  // reviews: [{  reviewSchema }],
+  reviews: [ reviewSchema ],
+}, { timeStamps: true });
 
-// export const ProductModel = getModelForClass(Product);
-module.exports = { ReviewSchema, ProductSchema };
+const ProductModel = mongoose.model('Product', productSchema)
+module.exports = ProductModel;

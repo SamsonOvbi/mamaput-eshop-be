@@ -8,7 +8,7 @@ const connectDB = () => {
       console.log('connected to mongodb at:' + mongoUri);
     })
     .catch((err) => {
-      console.log('error connecting to mongodb at:' + mongoUri);
+      console.log('error connecting to mongodb at:  ' + mongoUri);
       console.error(err);
     });
 }

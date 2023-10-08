@@ -101,14 +101,14 @@ const userData = [
   {
     name: 'Janet Zeta Jones',
     email: 'janet.z.jones@gmail.com',
-    password: bcrypt.hashSync('246824'),
-    isAdmin: false,
+    password: bcrypt.hashSync('123456'),
+    isAdmin: true,
   },
   {
     name: 'Samson Rerri',
     email: 'samson.rerri@gmail.com',
     password: bcrypt.hashSync('246824'),
-    isAdmin: true,
+    isAdmin: false,
   }
 ];
 

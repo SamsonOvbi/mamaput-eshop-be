@@ -1,17 +1,17 @@
 "use strict";
 
 const express = require('express');
-const asyncHandler = require('express-async-handler');
+// const asyncHandler = require('express-async-handler');
 const UserModel = require('../db/models/user.model');
 const { isAdmin, isAuth } = require('../utils');
 const ProductModel = require('../db/models/product.model');
-const { products, users } = require('../sample-data');
+const { userData, productData } = require('../sample-data');
 
 const productRouter = express.Router();
 
 productRouter.get(
   '/',
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     const name = (req.query.name || '');
     const category = (req.query.category || '');
     const order = (req.query.order || '');
@@ -30,13 +30,14 @@ productRouter.get(
       ...nameFilter, ...categoryFilter, ...priceFilter, ...ratingFilter,
     })
     .sort(sortOrder);
+    console.log(`message: All products`);
     res.send(products);
-  })
+  }
 );
 
 productRouter.get(
   '/paged',
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     const pageSize = 3;
     const page = Number(req.query.pageNumber) || 1;
     const name = (req.query.name || '');
@@ -62,31 +63,31 @@ productRouter.get(
       .skip(pageSize * (page - 1))
       .limit(pageSize);
     res.send({ products, page, pages: Math.ceil(count / pageSize) });
-  })
+  }
 );
 
 productRouter.get(
   '/categories',
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     const categories = await ProductModel.find().distinct('category');
     res.send(categories);
-  })
+  }
 );
 
 productRouter.get(
   '/seed',
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     await UserModel.remove();
     await ProductModel.remove();
-    const createdUsers = await UserModel.insertMany(users);
-    const createdProducts = await ProductModel.insertMany(products);
+    const createdUsers = await UserModel.insertMany(userData);
+    const createdProducts = await ProductModel.insertMany(productData);
     res.send({ createdUsers, createdProducts });
-  })
+  }
 );
 
 productRouter.get(
   '/slug/:slug',
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     const product = await ProductModel.findOne({
       slug: req.params.slug,
     });
@@ -95,26 +96,26 @@ productRouter.get(
     } else {
       res.status(404).send({ message: 'Product Not Found' });
     }
-  })
+  }
 );
 
-productRouter.get(
-  '/:id',
-  asyncHandler(async (req, res) => {
+productRouter.get('/:id',
+  async (req, res) => {
+    console.log(`req.params.id: ` + req.params.id);
     const product = await ProductModel.findById(req.params.id);
     if (product) {
       res.send(product);
     } else {
       res.status(404).send({ message: 'Product Not Found' });
     }
-  })
+  }
 );
 
 productRouter.post(
   '/',
   isAuth,
   isAdmin,
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     const product = await ProductModel.create({
       name: 'sample name ' + Date.now(),
       image: '../assets/images/p1.jpg',
@@ -127,16 +128,15 @@ productRouter.post(
       numReviews: 0,
       description: 'sample description',
     });
-
     const createdProduct = await product.save();
     res.send(createdProduct);
-  })
+  }
 );
 productRouter.put(
   '/:id',
   isAuth,
   isAdmin,
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     const productId = req.params.id;
     const product = await ProductModel.findById(productId);
     if (product) {
@@ -153,14 +153,14 @@ productRouter.put(
     } else {
       res.status(404).send({ message: 'Product Not Found' });
     }
-  })
+  }
 );
 
 productRouter.delete(
   '/:id',
   isAuth,
   isAdmin,
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     const product = await ProductModel.findById(req.params.id);
     if (product) {
       const deleteProduct = await product.remove();
@@ -168,13 +168,13 @@ productRouter.delete(
     } else {
       res.status(404).send({ message: 'Product Not Found' });
     }
-  })
+  }
 );
 
 productRouter.post(
   '/:id/reviews',
   isAuth,
-  asyncHandler(async (req, res) => {
+  async (req, res) => {
     const productId = req.params.id;
     const product = await ProductModel.findById(productId);
     if (product) {
@@ -203,7 +203,7 @@ productRouter.post(
     } else {
       res.status(404).send({ message: 'Product Not Found' });
     }
-  })
+  }
 );
 
 module.exports = productRouter

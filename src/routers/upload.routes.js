@@ -4,26 +4,19 @@ const multer = require('multer');
 const cloudinary = require('cloudinary');
 const streamifier = require('streamifier');
 const express = require('express');
-const asyncHandler = require('express-async-handler');
+// const asyncHandler = require('express-async-handler');
 const { isAdmin, isAuth } = require('../utils');
-
 const uploadRouter = express.Router();
 
 const upload = multer();
-uploadRouter.post(
-  '/',
-  isAuth,
-  isAdmin,
-  upload.single('image'),
 
-  asyncHandler(
+uploadRouter.post( '/', isAuth, isAdmin, upload.single('image'),
   async (req, res) => {
     cloudinary.config({
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
       api_key: process.env.CLOUDINARY_API_KEY,
       api_secret: process.env.CLOUDINARY_API_SECRET,
     });
-
     const streamUpload = (req) => {
       return new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
@@ -41,7 +34,6 @@ uploadRouter.post(
     const result = await streamUpload(req);
     res.send(result);
   }
-  )
 );
 
 // LOCAL UPLOAD
