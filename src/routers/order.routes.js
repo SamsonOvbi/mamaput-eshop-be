@@ -1,7 +1,7 @@
 "use strict";
 
 const express = require('express');
-// const asyncHandler = require('express-async-handler');
+const asyncHandler = require('express-async-handler');
 const UserModel = require('../db/models/user.model');
 const { isAdmin, isAuth } = require('../utils');
 const OrderModel = require('../db/models/order.model');
@@ -9,16 +9,15 @@ const ProductModel = require('../db/models/product.model');
 
 const orderRouter = express.Router();
 
-orderRouter.get( '/', isAuth, isAdmin,
-  async (req, res) => {
+orderRouter.get( '/', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const orders = await OrderModel.find().populate('user', 'name');
     res.send(orders);
-  }
+  })
 );
 
-orderRouter.get( '/summary', isAuth, isAdmin,
-  async (req, res) => {
-    const orders = await OrderModel.aggregate([{
+orderRouter.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
+    const orders = await OrderModel.aggregate([
+      {
         $group: {
           _id: null,
           numOrders: { $sum: 1 },
@@ -26,14 +25,16 @@ orderRouter.get( '/summary', isAuth, isAdmin,
         },
       },
     ]);
-    const users = await UserModel.aggregate([{
+    const users = await UserModel.aggregate([
+      {
         $group: {
           _id: null,
           numUsers: { $sum: 1 },
         },
       },
     ]);
-    const dailyOrders = await OrderModel.aggregate([{
+    const dailyOrders = await OrderModel.aggregate([
+      {
         $group: {
           _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
           orders: { $sum: 1 },
@@ -42,7 +43,8 @@ orderRouter.get( '/summary', isAuth, isAdmin,
       },
       { $sort: { _id: 1 } },
     ]);
-    const productCategories = await ProductModel.aggregate([{
+    const productCategories = await ProductModel.aggregate([
+      {
         $group: {
           _id: '$category',
           count: { $sum: 1 },
@@ -50,18 +52,18 @@ orderRouter.get( '/summary', isAuth, isAdmin,
       },
     ]);
     res.send({ users, orders, dailyOrders, productCategories });
-  }
+  })
 );
 
-orderRouter.get( '/History', isAuth,
-  async (req, res) => {
+orderRouter.get( '/hisotry',
+  isAuth, asyncHandler(async (req, res) => {
     const orders = await OrderModel.find({ user: req.user._id });
     res.send(orders);
-  }
+  })
 );
 
-orderRouter.post( '/', isAuth,
-  async (req, res) => {
+orderRouter.post( '/',
+  isAuth, asyncHandler(async (req, res) => {
     if (req.body.items.length === 0) {
       res.status(400).send({ message: 'Cart is empty' });
     } else {
@@ -77,23 +79,24 @@ orderRouter.post( '/', isAuth,
       });
       res.status(201).send(createdOrder);
     }
-  }
+  })
 );
 
-orderRouter.get( '/:id', isAuth,
-  async (req, res) => {
+orderRouter.get( '/:id',
+  isAuth, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     if (order) {
       res.send(order);
     } else {
       res.status(404).send({ message: 'Order Not Found' });
     }
-  }
+  })
 );
 
-orderRouter.put( '/:id/pay', isAuth,
-  async (req, res) => {
+orderRouter.put( '/:id/pay',
+  isAuth, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id).populate('user');
+
     if (order) {
       order.isPaid = true;
       order.paidAt = new Date(Date.now());
@@ -104,15 +107,15 @@ orderRouter.put( '/:id/pay', isAuth,
         email_address: req.body.email_address,
       };
       const updatedOrder = await order.save();
+
       res.send(updatedOrder);
     } else {
       res.status(404).send({ message: 'Order Not Found' });
     }
-  }
+  })
 );
 
-orderRouter.delete( '/:id', isAuth, isAdmin,
-  async (req, res) => {
+orderRouter.delete( '/:id', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     if (order) {
       const deleteOrder = await order.remove();
@@ -120,22 +123,22 @@ orderRouter.delete( '/:id', isAuth, isAdmin,
     } else {
       res.status(404).send({ message: 'Order Not Found' });
     }
-  }
+  })
 );
 
-orderRouter.put( '/:id/deliver', isAuth, isAdmin,
-  async (req, res) => {
+orderRouter.put( '/:id/deliver', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     if (order) {
       order.isDelivered = true;
       order.deliveredAt = new Date(Date.now());
       // order.deliveredAt = Date.now();
+
       const updatedOrder = await order.save();
       res.send({ message: 'Order Delivered', order: updatedOrder });
     } else {
       res.status(404).send({ message: 'Order Not Found' });
     }
-  }
+  })
 );
 
 module.exports = orderRouter;

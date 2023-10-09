@@ -22,7 +22,6 @@ var ItemSchema = new mongoose.Schema({
 });
 
 var PaymentResultSchema = new mongoose.Schema({
-// class PaymentResult {
   paymentId: { type: String },
   status: { type: String },
   update_time: { type: String },

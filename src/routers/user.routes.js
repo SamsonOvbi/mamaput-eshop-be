@@ -1,15 +1,14 @@
 "use strict";
 
 const express = require('express');
-// const asyncHandler = require('express-async-handler');
+const asyncHandler = require('express-async-handler');
 const UserModel = require('../db/models/user.model');
 const bcrypt = require('bcryptjs');
 const { generateToken, isAdmin, isAuth } = require('../utils');
 
 const userRouter = express.Router();
 
-userRouter.post( '/login',
-  async (req, res) => {
+userRouter.post( '/login', asyncHandler(async (req, res) => {
     const user = await UserModel.findOne({ email: req.body.email });
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -25,11 +24,10 @@ userRouter.post( '/login',
     } else {
       res.status(401).send({ message: 'Invalid email or password' });
     }
-  }
+  })
 );
 
-userRouter.post( '/register',
-  async (req, res) => {
+userRouter.post( '/register', asyncHandler(async (req, res) => {
     const user = await UserModel.create({
       name: req.body.name,
       email: req.body.email,
@@ -43,25 +41,25 @@ userRouter.post( '/register',
       isAdmin: user.isAdmin,
       token: generateToken(user),
     });
-  }
+
+  })
 );
 
-userRouter.get( '/:id',
-  async (req, res) => {
+userRouter.get( '/:id', asyncHandler(async (req, res) => {
     const user = await UserModel.findById(req.params.id);
     if (user) {
       res.send(user);
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
-  }
+  })
 );
-userRouter.put( '/update-profile', isAuth,
-  async (req, res) => {
+userRouter.put( '/update-profile', isAuth, asyncHandler(async (req, res) => {
     const user = await UserModel.findById(req.user._id);
     if (user) {
       user.name = req.body.name || user.name;
       user.email = req.body.email || user.email;
+
       if (req.body.password) {
         user.password = bcrypt.hashSync(req.body.password, 8);
       }
@@ -74,18 +72,16 @@ userRouter.put( '/update-profile', isAuth,
         token: generateToken(updatedUser),
       });
     }
-  }
+  })
 );
 
-userRouter.get( '/', isAuth, isAdmin,
-  async (req, res) => {
+userRouter.get( '/', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const users = await UserModel.find({});
     res.send(users);
-  }
+  })
 );
 
-userRouter.delete( '/:id', isAuth, isAdmin,
-  async (req, res) => {
+userRouter.delete( '/:id', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const user = await UserModel.findById(req.params.id);
     if (user) {
       if (user.email === 'admin@example.com') {
@@ -97,11 +93,10 @@ userRouter.delete( '/:id', isAuth, isAdmin,
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
-  }
+  })
 );
 
-userRouter.put( '/:id', isAuth, isAdmin,
-  async (req, res) => {
+userRouter.put( '/:id', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const user = await UserModel.findById(req.params.id);
     if (user) {
       user.name = req.body.name || user.name;
@@ -113,6 +108,7 @@ userRouter.put( '/:id', isAuth, isAdmin,
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
-  });
+  })
+);
 
 module.exports = userRouter;
