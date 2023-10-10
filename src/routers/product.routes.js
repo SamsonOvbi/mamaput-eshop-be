@@ -88,7 +88,8 @@ productRouter.get( '/slug/:slug', asyncHandler(async (req, res) => {
   })
 );
 
-productRouter.get( '/:id', asyncHandler(async (req, res) => {
+productRouter.get('/:id', asyncHandler(async (req, res) => {
+  console.log('req.params.id: ' + req.params.id);
     const product = await ProductModel.findById(req.params.id);
     if (product) {
       res.send(product);

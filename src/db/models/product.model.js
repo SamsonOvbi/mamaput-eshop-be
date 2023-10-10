@@ -9,7 +9,7 @@ const reviewSchema = new mongoose.Schema({
 }, { timeStamps: true });
 
 const productSchema = new mongoose.Schema({
-  _id: { type: String },
+  // _id: { type: String },
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
   image: { type: String, required: true },

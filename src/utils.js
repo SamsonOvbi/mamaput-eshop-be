@@ -36,7 +36,7 @@ const isAuth = (req, res, next) => {
   }
 };
 const isAdmin = (req, res, next) => {
-  console.log(`req.user.isAdmin: ` + req.user.isAdmin);
+  // console.log(`req.user.isAdmin: ` + req.user.isAdmin);
   if (req.user && req.user.isAdmin) {
     next();
   } else {
