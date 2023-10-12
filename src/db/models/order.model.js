@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ShippingAddressSchema = new mongoose.Schema({
-  fullName: { type: String, required: true },
+  fullName: { type: String },
   address: { type: String },
   city: { type: String },
   postalCode: { type: String },
@@ -15,9 +15,9 @@ var ShippingAddressSchema = new mongoose.Schema({
 
 var ItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  quantity: { type: String, required: true },
-  image: { type: Number, required: true },
-  price: Number,
+  quantity: { type: Number, required: true },
+  image: { type: String, required: true },
+  price: { type: Number, required: true },
   product: { type: Schema.Types.ObjectId, ref: 'Product' },
 });
 
@@ -29,14 +29,10 @@ var PaymentResultSchema = new mongoose.Schema({
 });
 
 var OrderSchema = new mongoose.Schema({
-  // _id: { type: String },
-  // items: [{ type: Schema.Types.ObjectId, ref: 'Item'}],
   items: [ItemSchema],
-  // shippingAddress: { type: Schema.Types.ObjectId, ref: 'ShippingAddress'},
   shippingAddress: ShippingAddressSchema,
   user: { type: Schema.Types.ObjectId, ref: 'User' },
-  paymentMethod: { type: String },
-  // paymentResult: { type: Schema.Types.ObjectId, ref: 'PaymentResult'},
+  paymentMethod: { type: String, required: true },
   paymentResult: PaymentResultSchema,
   itemsPrice: { type: Number, required: true, default: 0 },
   shippingPrice: { type: Number, required: true, default: 0 },

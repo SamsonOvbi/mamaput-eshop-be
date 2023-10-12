@@ -9,6 +9,7 @@ const userRouter = require('./routers/user.routes');
 const orderRouter = require('./routers/order.routes');
 const productRouter = require('./routers/product.routes');
 const uploadRouter = require('./routers/upload.routes');
+const payRouter = require('./routers/pay.routes');
 // const log = require('console');
 
 dotenv.config();
@@ -29,17 +30,7 @@ app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
-app.get('/api/config/paypal', (req, res) => {
-  res.send({ clientId: process.env.PAYPAL_CLIENT_ID || 'sb' });
-});
-
-// const __dirname = path.resolve();
-// app.use(express.static(path.join(__dirname, './frontend/dist/frontend')));
-/*
-app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, './frontend/dist/frontend/index.html'))
-);
-*/
+app.get('/api/pay', payRouter);
 
 app.get('/', (req, res) =>
   res.send({Message: 'Welcome to express ts server'})
@@ -50,7 +41,7 @@ app.use((err, req, res , next) => {
   next();
 });
 
-const PORT = parseInt((process.env.PORT || '3000'), 10);
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`server started at http://localhost:${PORT}`);
 });

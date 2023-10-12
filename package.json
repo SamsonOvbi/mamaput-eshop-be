@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --trace-warnings src/index.js"
+    "start": "node --trace-warnings src/index.js",
+    "dev": "nodemon --trace-warnings src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +25,6 @@
     "streamifier": "^0.1.1"
   },
   "devDependencies": {
+    "nodemon": "^2.0.22"
   }
 }

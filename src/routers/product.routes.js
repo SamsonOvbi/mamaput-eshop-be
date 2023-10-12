@@ -89,7 +89,7 @@ productRouter.get( '/slug/:slug', asyncHandler(async (req, res) => {
 );
 
 productRouter.get('/:id', asyncHandler(async (req, res) => {
-  console.log('req.params.id: ' + req.params.id);
+  // console.log('req.params.id: ' + req.params.id);
     const product = await ProductModel.findById(req.params.id);
     if (product) {
       res.send(product);
@@ -166,9 +166,7 @@ productRouter.post( '/:id/reviews',
       };
       product.reviews.push(review);
       product.numReviews = product.reviews.length;
-      product.rating =
-        product.reviews.reduce((a, c) => c.rating + a, 0) /
-        product.reviews.length;
+      product.rating = product.reviews.reduce((a, c) => c.rating + a, 0) / product.reviews.length;
       console.log(product.reviews);
       const updatedProduct = await product.save();
       res.status(201).send({

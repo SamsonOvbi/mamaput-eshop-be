@@ -16,8 +16,7 @@ orderRouter.get( '/', isAuth, isAdmin, asyncHandler(async (req, res) => {
 );
 
 orderRouter.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
-    const orders = await OrderModel.aggregate([
-      {
+    const orders = await OrderModel.aggregate([{
         $group: {
           _id: null,
           numOrders: { $sum: 1 },
@@ -25,16 +24,14 @@ orderRouter.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
         },
       },
     ]);
-    const users = await UserModel.aggregate([
-      {
+    const users = await UserModel.aggregate([{
         $group: {
           _id: null,
           numUsers: { $sum: 1 },
         },
       },
     ]);
-    const dailyOrders = await OrderModel.aggregate([
-      {
+    const dailyOrders = await OrderModel.aggregate([{
         $group: {
           _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
           orders: { $sum: 1 },
@@ -43,8 +40,7 @@ orderRouter.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
       },
       { $sort: { _id: 1 } },
     ]);
-    const productCategories = await ProductModel.aggregate([
-      {
+    const productCategories = await ProductModel.aggregate([{
         $group: {
           _id: '$category',
           count: { $sum: 1 },
@@ -55,15 +51,14 @@ orderRouter.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
   })
 );
 
-orderRouter.get( '/hisotry',
-  isAuth, asyncHandler(async (req, res) => {
+orderRouter.get( '/history', isAuth, asyncHandler(async (req, res) => {
     const orders = await OrderModel.find({ user: req.user._id });
     res.send(orders);
   })
 );
 
-orderRouter.post( '/',
-  isAuth, asyncHandler(async (req, res) => {
+orderRouter.post( '/', isAuth, asyncHandler(async (req, res) => {
+  console.log('req.body.items.length: ' + req.body.items.length);
     if (req.body.items.length === 0) {
       res.status(400).send({ message: 'Cart is empty' });
     } else {
@@ -77,24 +72,25 @@ orderRouter.post( '/',
         totalPrice: req.body.totalPrice,
         user: req.user._id,
       });
+      console.log('createdOrder: ' + createdOrder);
       res.status(201).send(createdOrder);
     }
   })
 );
 
-orderRouter.get( '/:id',
-  isAuth, asyncHandler(async (req, res) => {
+orderRouter.get( '/:id', isAuth, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
+    console.log('req.params.id: ' + req.params.id);
+    console.log('order: ' + order);
     if (order) {
       res.send(order);
     } else {
-      res.status(404).send({ message: 'Order Not Found' });
+      res.status(404).send({ message_id: 'Order Not Found' });
     }
   })
 );
 
-orderRouter.put( '/:id/pay',
-  isAuth, asyncHandler(async (req, res) => {
+orderRouter.put( '/:id/pay', isAuth, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id).populate('user');
 
     if (order) {
