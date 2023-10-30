@@ -1,11 +1,14 @@
 "use strict";
 
+const dotenv =  require('dotenv');
+dotenv.config();
+
 const multer = require('multer');
 const cloudinary = require('cloudinary');
 const streamifier = require('streamifier');
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { isAdmin, isAuth } = require('../utils');
+const { isAdmin, isAuth } = require('../services/auth');
 
 const uploadRouter = express.Router();
 

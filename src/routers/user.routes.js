@@ -1,10 +1,12 @@
 "use strict";
 
+const dotenv =  require('dotenv');
+dotenv.config();
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const UserModel = require('../db/models/user.model');
 const bcrypt = require('bcryptjs');
-const { generateToken, isAdmin, isAuth } = require('../utils');
+const { generateToken, isAdmin, isAuth } = require('../services/auth');
 
 const userRouter = express.Router();
 

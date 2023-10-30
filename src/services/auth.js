@@ -1,6 +1,8 @@
 "use strict";
 
-// const Request, Response = require('express');
+const dotenv =  require('dotenv');
+dotenv.config();
+
 const jwt = require('jsonwebtoken');
 // const User = require('./db/models/user.model');
 
@@ -31,6 +33,7 @@ const isAuth = (req, res, next) => {
     res.status(401).send({ message: 'No Token' });
   }
 };
+
 const isAdmin = (req, res, next) => {
   if (req.user && req.user.isAdmin) {
     next();

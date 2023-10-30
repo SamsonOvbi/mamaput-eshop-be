@@ -9,7 +9,7 @@ const userRouter = require('./routers/user.routes');
 const orderRouter = require('./routers/order.routes');
 const productRouter = require('./routers/product.routes');
 const uploadRouter = require('./routers/upload.routes');
-const payRouter = require('./routers/pay.routes');
+const paymentRouter = require('./routers/payment.routes');
 // const log = require('console');
 
 dotenv.config();
@@ -18,7 +18,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ['http://localhost:4200'],
+    origin: ['http://localhost:4200', 'http://localhost:4204'],
   })
 );
 app.use(express.json());
@@ -30,10 +30,13 @@ app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
-app.get('/api/pay', payRouter);
+app.use('/api/payments', paymentRouter);
+app.get('/api/config/paypal', (req, res) => {
+  res.send({ clientId: process.env.PAYPAL_CLIENT_ID || 'sb' });
+});
 
 app.get('/', (req, res) =>
-  res.send({Message: 'Welcome to express ts server'})
+  res.send({message: 'Welcome to express server'})
 );
 
 app.use((err, req, res , next) => {

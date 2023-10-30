@@ -9,7 +9,6 @@ const reviewSchema = new mongoose.Schema({
 }, { timeStamps: true });
 
 const productSchema = new mongoose.Schema({
-  // _id: { type: String },
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
   image: { type: String, required: true },
@@ -20,7 +19,6 @@ const productSchema = new mongoose.Schema({
   countInStock: { type: Number, required: true, default: 0 },
   rating: { type: Number, required: true, default: 0 },
   numReviews: { type: Number, required: true, default: 0 },
-  // reviews: [{  reviewSchema }],
   reviews: [ reviewSchema ],
 }, { timeStamps: true });
 

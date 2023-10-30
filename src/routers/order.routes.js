@@ -3,16 +3,16 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const UserModel = require('../db/models/user.model');
-const { isAdmin, isAuth } = require('../utils');
+const { isAdmin, isAuth } = require('../services/auth');
 const OrderModel = require('../db/models/order.model');
 const ProductModel = require('../db/models/product.model');
 
 const orderRouter = express.Router();
 
 orderRouter.get( '/', isAuth, isAdmin, asyncHandler(async (req, res) => {
-    const orders = await OrderModel.find().populate('user', 'name');
-    res.send(orders);
-  })
+  const orders = await OrderModel.find().populate('user', 'name');
+  res.send(orders);
+})
 );
 
 orderRouter.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
@@ -72,7 +72,7 @@ orderRouter.post( '/', isAuth, asyncHandler(async (req, res) => {
         totalPrice: req.body.totalPrice,
         user: req.user._id,
       });
-      console.log('createdOrder: ' + createdOrder);
+      // console.log('createdOrder: ' + createdOrder);
       res.status(201).send(createdOrder);
     }
   })
@@ -81,7 +81,7 @@ orderRouter.post( '/', isAuth, asyncHandler(async (req, res) => {
 orderRouter.get( '/:id', isAuth, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     console.log('req.params.id: ' + req.params.id);
-    console.log('order: ' + order);
+    // console.log('order: ' + order);
     if (order) {
       res.send(order);
     } else {
