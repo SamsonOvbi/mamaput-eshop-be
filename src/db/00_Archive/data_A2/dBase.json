@@ -1,0 +1,420 @@
+{
+  "products": [
+      {
+          "name": "Awesome Rubber Ball",
+          "categoryID": 9,
+          "imageUrl": "https://picsum.photos/seed/Efd748J/240/240",
+          "description": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+          "price": "12.00",
+          "status": "available"
+      },
+      {
+          "name": "Refined Soft Table",
+          "categoryID": 2,
+          "imageUrl": "https://picsum.photos/seed/QUDJQU9/240/240",
+          "description": "The Football Is Good For Training And Recreational Purposes",
+          "price": "99.00",
+          "status": "available"
+      },
+      {
+          "name": "Generic Rubber Gloves",
+          "categoryID": 3,
+          "imageUrl": "https://picsum.photos/seed/8TG021PUAa/240/240",
+          "description": "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+          "price": "75.00",
+          "status": "available"
+      },
+      {
+          "name": "Handcrafted Frozen Shoes",
+          "categoryID": 4,
+          "imageUrl": "https://picsum.photos/seed/zFWSo/240/240",
+          "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+          "price": "72.00",
+          "status": "out of stock"
+      },
+      {
+          "name": "Refined Steel Hat",
+          "categoryID": 5,
+          "imageUrl": "https://picsum.photos/seed/AXV21l21q/240/240",
+          "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+          "price": "36.00",
+          "status": "available"
+      },
+      {
+          "name": "Handmade Rubber Soap",
+          "categoryID": 3,
+          "imageUrl": "https://picsum.photos/seed/jIokv4lqPA/240/240",
+          "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+          "price": "58.00",
+          "status": "out of stock"
+      },
+      {
+          "name": "Elegant Concrete Tuna",
+          "categoryID": 9,
+          "imageUrl": "https://picsum.photos/seed/MNWsH/240/240",
+          "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+          "price": "84.00",
+          "status": "available"
+      },
+      {
+          "name": "Fantastic Concrete Cheese",
+          "categoryID": 9,
+          "imageUrl": "https://picsum.photos/seed/rqQtDGY/240/240",
+          "description": "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+          "price": "4.00",
+          "status": "available"
+      },
+      {
+          "name": "Tasty Plastic Car",
+          "categoryID": 5,
+          "imageUrl": "https://picsum.photos/seed/bFPjr2mxH/240/240",
+          "description": "The Football Is Good For Training And Recreational Purposes",
+          "price": "119.00",
+          "status": "available"
+      },
+      {
+          "name": "Electronic Cotton Sausages",
+          "categoryID": 1,
+          "imageUrl": "https://picsum.photos/seed/Kak0AQ65/240/240",
+          "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+          "price": "127.00",
+          "status": "available"
+      },
+      {
+          "name": "Practical Soft Bacon",
+          "categoryID": 2,
+          "imageUrl": "https://picsum.photos/seed/GG7DT6ML/240/240",
+          "description": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+          "price": "144.00",
+          "status": "available"
+      },
+      {
+          "name": "Licensed Rubber Hat",
+          "categoryID": 5,
+          "imageUrl": "https://picsum.photos/seed/ZAaLnOQ/240/240",
+          "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+          "price": "45.00",
+          "status": "out of stock"
+      }
+  ],
+  "articles": [
+      {
+          "name": "Rustic Fresh Cheese",
+          "categoryID": 2,
+          "imageUrl": "https://picsum.photos/seed/Z57vUuQxXS/240/240",
+          "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+          "price": "69.00",
+          "status": "out of stock"
+      },
+      {
+          "name": "Incredible Frozen Keyboard",
+          "categoryID": 10,
+          "imageUrl": "https://picsum.photos/seed/Kwde2BJkLj/240/240",
+          "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+          "price": "79.00",
+          "status": "available"
+      },
+      {
+          "name": "Gorgeous Granite Computer",
+          "categoryID": 10,
+          "imageUrl": "https://picsum.photos/seed/7cd6n4/240/240",
+          "description": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+          "price": "124.00",
+          "status": "out of stock"
+      },
+      {
+          "name": "Awesome Cotton Table",
+          "categoryID": 6,
+          "imageUrl": "https://picsum.photos/seed/qLjdw/240/240",
+          "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+          "price": "51.00",
+          "status": "available"
+      },
+      {
+          "name": "Small Frozen Chicken",
+          "categoryID": 12,
+          "imageUrl": "https://picsum.photos/seed/77hfJ/240/240",
+          "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+          "price": "71.00",
+          "status": "out of stock"
+      },
+      {
+          "name": "Elegant Frozen Keyboard",
+          "categoryID": 12,
+          "imageUrl": "https://picsum.photos/seed/CYEvGY/240/240",
+          "description": "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+          "price": "149.00",
+          "status": "out of stock"
+      },
+      {
+          "name": "Elegant Soft Bike",
+          "categoryID": 5,
+          "imageUrl": "https://picsum.photos/seed/VfJnyHv/240/240",
+          "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+          "price": "23.00",
+          "status": "out of stock"
+      },
+      {
+          "name": "Tasty Frozen Computer",
+          "categoryID": 9,
+          "imageUrl": "https://picsum.photos/seed/4FKjor/240/240",
+          "description": "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+          "price": "107.00",
+          "status": "available"
+      },
+      {
+          "name": "Gorgeous Wooden Chips",
+          "categoryID": 10,
+          "imageUrl": "https://picsum.photos/seed/tBMox7j9/240/240",
+          "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+          "price": "147.00",
+          "status": "available"
+      },
+      {
+          "name": "Electronic Metal Chips",
+          "categoryID": 10,
+          "imageUrl": "https://picsum.photos/seed/7UDAcvGB4H/240/240",
+          "description": "The Football Is Good For Training And Recreational Purposes",
+          "price": "83.00",
+          "status": "available"
+      },
+      {
+          "name": "Sleek Frozen Fish",
+          "categoryID": 8,
+          "imageUrl": "https://picsum.photos/seed/8eiih/240/240",
+          "description": "The Football Is Good For Training And Recreational Purposes",
+          "price": "45.00",
+          "status": "available"
+      },
+      {
+          "name": "Gorgeous Fresh Cheese",
+          "categoryID": 1,
+          "imageUrl": "https://picsum.photos/seed/JijQjB/240/240",
+          "description": "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients",
+          "price": "89.00",
+          "status": "out of stock"
+      }
+  ],
+  "users": [
+      {
+          "name": "Chelsea Pfannerstill-Cruickshank I",
+          "phone": "(203) 824-7375 x5510",
+          "email": "Friedrich_Ortiz55@gmail.com",
+          "password": "qUtkBWx",
+          "status": "true",
+          "role": "admin"
+      },
+      {
+          "name": "Michele Bradtke DVM",
+          "phone": "(470) 291-7181 x91792",
+          "email": "Romaine.Quigley52@hotmail.com",
+          "password": "EthMwVp",
+          "status": "false",
+          "role": "user"
+      },
+      {
+          "name": "Jeffery Ward",
+          "phone": "500-354-6203 x92173",
+          "email": "Aurelio.Collins@yahoo.com",
+          "password": "PaDt36w",
+          "status": "false",
+          "role": "admin"
+      },
+      {
+          "name": "Merle Muller",
+          "phone": "276.840.8269 x98354",
+          "email": "Macie73@yahoo.com",
+          "password": "YErTP9R",
+          "status": "true",
+          "role": "admin"
+      },
+      {
+          "name": "Candice Dickens IV",
+          "phone": "(674) 703-2337 x159",
+          "email": "Marlen69@hotmail.com",
+          "password": "OkT_vda",
+          "status": "false",
+          "role": "admin"
+      },
+      {
+          "name": "Kristen Heathcote",
+          "phone": "(728) 997-3888 x395",
+          "email": "Kennedi22@hotmail.com",
+          "password": "hOhxzHn",
+          "status": "true",
+          "role": "user"
+      },
+      {
+          "name": "Alyssa Welch",
+          "phone": "(253) 512-5498 x323",
+          "email": "Kaycee_Leuschke@yahoo.com",
+          "password": "0bACRin",
+          "status": "false",
+          "role": "admin"
+      },
+      {
+          "name": "Arturo Dickinson",
+          "phone": "947-472-9166 x56155",
+          "email": "Elissa_Haley15@hotmail.com",
+          "password": "9DpAvlw",
+          "status": "true",
+          "role": "admin"
+      },
+      {
+          "name": "Louis Torphy DDS",
+          "phone": "943.203.9158 x81091",
+          "email": "Daryl.Gerhold94@yahoo.com",
+          "password": "rCfxIeP",
+          "status": "false",
+          "role": "admin"
+      },
+      {
+          "name": "Natasha Lind Sr.",
+          "phone": "1-708-208-6930 x92594",
+          "email": "Nick.Kris2@gmail.com",
+          "password": "6H9TFDZ",
+          "status": "true",
+          "role": "admin"
+      },
+      {
+          "name": "Jerome Botsford",
+          "phone": "577-766-6111 x2394",
+          "email": "Jeramie7@gmail.com",
+          "password": "CnhJxvR",
+          "status": "false",
+          "role": "admin"
+      },
+      {
+          "name": "Keith Schoen",
+          "phone": "(712) 931-7383",
+          "email": "Mallie_Bechtelar@gmail.com",
+          "password": "CfJKhjn",
+          "status": "true",
+          "role": "user"
+      }
+  ],
+  "roles": [
+      {
+          "title": "Oriental Fresh Chips",
+          "text": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+          "rating": 2,
+          "bootcamp": "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+          "user": "user"
+      },
+      {
+          "title": "Small Granite Shoes",
+          "text": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+          "rating": 1,
+          "bootcamp": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+          "user": "admin"
+      },
+      {
+          "title": "Handmade Wooden Mouse",
+          "text": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+          "rating": 4,
+          "bootcamp": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+          "user": "admin"
+      },
+      {
+          "title": "Bespoke Wooden Soap",
+          "text": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+          "rating": 3,
+          "bootcamp": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+          "user": "user"
+      },
+      {
+          "title": "Practical Granite Towels",
+          "text": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+          "rating": 2,
+          "bootcamp": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+          "user": "admin"
+      },
+      {
+          "title": "Practical Fresh Chair",
+          "text": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+          "rating": 5,
+          "bootcamp": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit",
+          "user": "user"
+      },
+      {
+          "title": "Awesome Cotton Chicken",
+          "text": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+          "rating": 2,
+          "bootcamp": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+          "user": "admin"
+      },
+      {
+          "title": "Unbranded Fresh Bacon",
+          "text": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+          "rating": 1,
+          "bootcamp": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+          "user": "admin"
+      },
+      {
+          "title": "Practical Granite Table",
+          "text": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive",
+          "rating": 5,
+          "bootcamp": "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+          "user": "admin"
+      },
+      {
+          "title": "Refined Wooden Cheese",
+          "text": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+          "rating": 5,
+          "bootcamp": "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+          "user": "user"
+      },
+      {
+          "title": "Handcrafted Concrete Keyboard",
+          "text": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+          "rating": 2,
+          "bootcamp": "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+          "user": "admin"
+      },
+      {
+          "title": "Generic Cotton Tuna",
+          "text": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+          "rating": 4,
+          "bootcamp": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+          "user": "admin"
+      }
+  ],
+  "categories": [
+      {
+          "name": "Grocery"
+      },
+      {
+          "name": "Sports"
+      },
+      {
+          "name": "Books"
+      },
+      {
+          "name": "Tools"
+      },
+      {
+          "name": "Computers"
+      },
+      {
+          "name": "Home"
+      },
+      {
+          "name": "Baby"
+      },
+      {
+          "name": "Toys"
+      },
+      {
+          "name": "Shoes"
+      },
+      {
+          "name": "Outdoors"
+      },
+      {
+          "name": "Beauty"
+      },
+      {
+          "name": "Games"
+      }
+  ]
+}

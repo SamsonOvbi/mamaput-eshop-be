@@ -5,7 +5,8 @@ const asyncHandler = require('express-async-handler');
 const UserModel = require('../db/models/user.model');
 const { isAdmin, isAuth } = require('../services/auth');
 const ProductModel = require('../db/models/product.model');
-const { userData, productData } = require('../db/data/product.data');
+const productData = require('../db/data/product.data');
+const userData = require('../db/data/user.data');
 
 const productRouter = express.Router();
 

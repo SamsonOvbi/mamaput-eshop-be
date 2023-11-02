@@ -11,12 +11,10 @@ const paymentRouter = express.Router();
 
 paymentRouter.get('/', expressAsyncHandler(async (req, res) => {
   res.send({message: 'Welcome to payment gateway'});
-  // res.send({ clientId: process.env.STRIPE_CLIENT_ID || 'sb' });
 })
 );
 
 paymentRouter.get('/stripe', expressAsyncHandler(async (req, res) => {
-  // res.send({message: 'Welcome to express ts server'});
   res.send({ clientId: process.env.STRIPE_CLIENT_ID || 'sb' });
 })
 );

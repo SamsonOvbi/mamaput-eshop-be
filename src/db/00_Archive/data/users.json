@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Janet Zeta Jones",
+    "phone": "54287083139",
+    "email": "janet.z.jones@gmail.com",
+    "password": "2468247",
+    "status": "true",
+    "role": "admin"
+  },
+  {
+    "name": "Samson Rerri",
+    "phone": "07086520914",
+    "email": "samson.rerri@gmail.com",
+    "password": "2468247",
+    "status": "true",
+    "role": "admin"
+  },
+  {
+    "name": "Omar Considine",
+    "phone": "81536111212",
+    "email": "Tyrell87@yahoo.com",
+    "password": "AAC7x4x",
+    "status": "true",
+    "role": "user"
+  },
+  {
+    "name": "Cindy Little",
+    "phone": "51146859088",
+    "email": "Dario.Gusikowski@yahoo.com",
+    "password": "sOYxK9z",
+    "status": "false",
+    "role": "user"
+  },
+  {
+    "name": "Camille Raynor",
+    "phone": "23900461947",
+    "email": "Layla.Friesen98@gmail.com",
+    "password": "Abv1XRO",
+    "status": "true",
+    "role": "user"
+  },
+  {
+    "name": "Claire Johnston",
+    "phone": "78935390601",
+    "email": "Rafael.Gibson@yahoo.com",
+    "password": "uwpxITF",
+    "status": "false",
+    "role": "user"
+  },
+  {
+    "name": "Benjamin Erdman",
+    "phone": "15476113480",
+    "email": "Providenci79@gmail.com",
+    "password": "5Kdd8Hu",
+    "status": "false",
+    "role": "user"
+  },
+  {
+    "name": "Anita Langworth",
+    "phone": "09667477057",
+    "email": "Janice_Balistreri@yahoo.com",
+    "password": "kYf0mU3",
+    "status": "false",
+    "role": "user"
+  },
+  {
+    "name": "Adrian Windler",
+    "phone": "92567514972",
+    "email": "Virgie_Schaden18@gmail.com",
+    "password": "2oZhGXa",
+    "status": "true",
+    "role": "user"
+  },
+  {
+    "name": "Tanya Bergstrom",
+    "phone": "22803633091",
+    "email": "Paula.Goldner@hotmail.com",
+    "password": "7ixSQYt",
+    "status": "true",
+    "role": "admin"
+  },
+  {
+    "name": "Jon Brekke",
+    "phone": "93423216133",
+    "email": "Delta.Dickens@yahoo.com",
+    "password": "Kqt0KZu",
+    "status": "true",
+    "role": "user"
+  },
+  {
+    "name": "Cassandra Nitzsche",
+    "phone": "60806766383",
+    "email": "Mona.Streich12@yahoo.com",
+    "password": "hULBNJc",
+    "status": "true",
+    "role": "user"
+  }
+]

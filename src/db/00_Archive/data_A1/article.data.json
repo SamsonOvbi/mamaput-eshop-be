@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "My first article",
+    "key": "my-first-article",
+    "content": "<p>Beauty and the Beast is a traditional fairy tale. Its first published version was written by French author Gabrielle-Suzanne Barbot de Villeneuve in the middle 18th century. It was a novel-length story intended for adult readers and addressing the issues of the marriage system of the day in which women had no right to choose their husband or to refuse to marry.</p>\n    <p>The best-known version of the tale appeared sixteen years later. Jeanne-Marie Le Prince de Beaumont simplified and shortened the Villeneuve's work and published it in a magazine for young ladies.</p>\n    <p>The new abridged version became more successful, and Madame de Beaumont is regarded now as the author of the classic story.</p>",
+    "description": "This is my first article! It is great. Please read it",
+    "date": "2023-08-31T00:19:01.865Z",
+    "imageUrl": "../../assets/Beauty and the Beast.png"
+  },
+  {
+    "id": 2,
+    "title": "The second article",
+    "key": "the-second-article",
+    "content": "<p>Charles Dickens explores 19th Century London crime world through the story of Oliver Twist, an orphaned, born and raised in a workhouse. Oliver runs away, only to land in the London underworld. Dickens explores this crucible of crime, debauchery and abuse where Fagin, running a gang of pickpockets, forces Oliver into street theft. </p>\n    <p>Caught but cleared in trial, Oliver receives kindness from Mr. Barlow. However, he’s ensnared again and forced to participate in a failed robbery, getting shot in the arm and taken in by Rose Maylie. Together, Rose, Barlow, and the sympathetic Nancy, part of Fagin’s gang, shield Oliver from Fagin and Monks.\n    <p>A series of events lead to the death of Nancy and revelation of an important truth to Monks. Similar to most Dickens novels, hope and good triumph as Fagin and gang are brought to justice and the story ends on a happy note for Oliver and his friends.</p>",
+    "description": "This is great too.",
+    "date": "2023-08-31T00:19:01.865Z",
+    "imageUrl": "../../assets/Oliver Twist.png"
+  }
+]

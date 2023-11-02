@@ -36,7 +36,7 @@ app.get('/api/config/paypal', (req, res) => {
 });
 
 app.get('/', (req, res) =>
-  res.send({message: 'Welcome to express server'})
+  res.send({message: 'Welcome to Mama Blog express server'})
 );
 
 app.use((err, req, res , next) => {
