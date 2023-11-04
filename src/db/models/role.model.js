@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const roleSchema = new mongoose.Schema({
   title: { type: String, required: true },
   text: { type: String, required: true, unique: true },
   rating: { type: Number, required: true, default: 0 },
@@ -10,5 +10,5 @@ const userSchema = new mongoose.Schema({
   user: { type: Boolean, required: true, default: false },
 }, { timestamps: true });
 
-const UserModel = mongoose.model('User', userSchema)
-module.exports = UserModel;
+const RoleModel = mongoose.model('Role', roleSchema)
+module.exports = RoleModel;

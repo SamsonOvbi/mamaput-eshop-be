@@ -26,6 +26,18 @@ const userData = [
     email: 'samson.rerri@gmail.com',
     password: bcrypt.hashSync('246824'),
     isAdmin: false,
+  },
+  {
+      name: "Elise Nyota",
+      email: "elise.nyota@example.com",
+      password: bcrypt.hashSync('246824'),
+      isAdmin: false
+  },
+  {
+      name: "Parcey Ogaga",
+      email: "parcey.ogaga@example.com",
+      password: bcrypt.hashSync('246824'),
+      isAdmin: false
   }
 ];
 

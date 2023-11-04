@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Arielle Rodriguez",
+    "phone": 70377796524,
+    "email": "arielle.rodriguez78@yahoo.com",
+    "password": "aYJaAmf",
+    "status": "false",
+    "role": "guest"
+  },
+  {
+    "name": "Otilia Howell",
+    "phone": 84625728888,
+    "email": "otilia23@yahoo.com",
+    "password": "VmXfbx6",
+    "status": "false",
+    "role": "user"
+  },
+  {
+    "name": "Nelda Emmerich",
+    "phone": 84213202901,
+    "email": "nelda46@yahoo.com",
+    "password": "swXRZKC",
+    "status": "false",
+    "role": "user"
+  },
+  {
+    "name": "Araceli Rempel",
+    "phone": 87783613221,
+    "email": "araceli.rempel29@gmail.com",
+    "password": "6yCwmUn",
+    "status": "true",
+    "role": "user"
+  },
+  {
+    "name": "Zion Haley",
+    "phone": 75809231823,
+    "email": "zion_haley@gmail.com",
+    "password": "awjq8TX",
+    "status": "false",
+    "role": "guest"
+  },
+  {
+    "name": "Mortimer Stanton",
+    "phone": 86853449215,
+    "email": "mortimer_stanton@gmail.com",
+    "password": "hy5eqlW",
+    "status": "true",
+    "role": "user"
+  },
+  {
+    "name": "Jamie Reichel MD",
+    "phone": 75086387309,
+    "email": "jamie_reichel35@gmail.com",
+    "password": "H4UqMNt",
+    "status": "false",
+    "role": "guest"
+  },
+  {
+    "name": "Will Legros",
+    "phone": 91533201025,
+    "email": "will.legros@gmail.com",
+    "password": "o9il8X0",
+    "status": "false",
+    "role": "user"
+  },
+  {
+    "name": "Laurence Kozey IV",
+    "phone": 80366241024,
+    "email": "laurence.kozey66@gmail.com",
+    "password": "4vjlwH6",
+    "status": "true",
+    "role": "user"
+  },
+  {
+    "name": "Mustafa Bins",
+    "phone": 72861233331,
+    "email": "mustafa_bins@yahoo.com",
+    "password": "_qzTFiz",
+    "status": "true",
+    "role": "guest"
+  },
+  {
+    "name": "Drew Denesik",
+    "phone": 73394727151,
+    "email": "drew_denesik@hotmail.com",
+    "password": "t5xjIw6",
+    "status": "false",
+    "role": "guest"
+  },
+  {
+    "name": "Enoch Schroeder",
+    "phone": 81340577557,
+    "email": "enoch.schroeder@hotmail.com",
+    "password": "q_CdZdH",
+    "status": "true",
+    "role": "user"
+  }
+]

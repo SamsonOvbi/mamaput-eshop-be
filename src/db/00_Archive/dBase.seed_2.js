@@ -84,29 +84,29 @@ dBaseSeed.get('/generate-seed-data', (req, res) => {
 dBaseSeed.get('/insert-json-data', (req, res) => {
   const { products, articles, users, roles, categories } = req.body;
 
-  fs.writeFile('DB/data/products.json', JSON.stringify(products), (err) => {
+  fs.writeFile('db/data/products.json', JSON.stringify(products), (err) => {
     if (err) throw err;
     console.log('Products data inserted into products.json');
   });
 
 
-  fs.writeFile('DB/data/articles.json', JSON.stringify(articles), (err) => {
+  fs.writeFile('db/data/articles.json', JSON.stringify(articles), (err) => {
     if (err) throw err;
     console.log('Articles data inserted into articles.json');
   });
 
-  fs.writeFile('DB/data/users.json', JSON.stringify(users), (err) => {
+  fs.writeFile('db/data/users.json', JSON.stringify(users), (err) => {
     if (err) throw err;
     console.log('Users data inserted into users.json');
   });
 
 
-  fs.writeFile('DB/data/roles.json', JSON.stringify(roles), (err) => {
+  fs.writeFile('db/data/roles.json', JSON.stringify(roles), (err) => {
     if (err) throw err;
     console.log('Roles data inserted into roles.json');
   });
 
-  fs.writeFile('DB/data/categories.json', JSON.stringify(categories), (err) => {
+  fs.writeFile('db/data/categories.json', JSON.stringify(categories), (err) => {
     if (err) throw err;
     console.log('Categories data inserted into categories.json');
   });
@@ -130,8 +130,8 @@ dBaseSeed.get('/populate-database', async (req, res) => {
     await RoleModel.create(rolesData);
     await CategoryModel.create(categoriesData);
 
-    console.log('Data Imported into DB...');
-    res.send('Data Imported into DB...');
+    console.log('Data Imported into db...');
+    res.send('Data Imported into db...');
   } catch (err) {
     console.error(err);
   }
@@ -148,7 +148,7 @@ dBaseSeed.get('/read-database', async (req, res) => {
     rolesData = await RoleModel.find();
     categoriesData = await CategoryModel.find();
 
-    console.log('Data read from DB...');
+    console.log('Data read from db...');
     res.json({ productsData, usersData, articlesData, categoriesData, rolesData });
   } catch (err) {
     console.error(err);

@@ -9,10 +9,12 @@ const reviewSchema = new mongoose.Schema({
 }, { timeStamps: true });
 
 const bookSchema = new mongoose.Schema({
-  isbn: { type: String, required: true },
+  isbn: { type: Number, required: true },
   title: { type: String, required: true },
   subtitle: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
+  category: { type: String, required: true },
+  image: { type: String, required: true },
   author: { type: String, required: true },
   published: { type: String, required: true },
   publisher: { type: String, required: true },

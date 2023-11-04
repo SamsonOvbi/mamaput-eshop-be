@@ -1,0 +1,41 @@
+{
+  "usersData": [
+      {
+          "name": "Joe Admin",
+          "email": "joe.admin@example.com",
+          "password": "$2a$10$yC2YyRU4xv9H7RSQeGAky.0E9bJCkj3W5ersnQoxvDVQ7u1l8BEAy",
+          "isAdmin": true
+
+      },
+      {
+          "name": "John",
+          "email": "user@example.com",
+          "password": "$2a$10$nvthl7U8vOrKhjSPRSZNQui83SsCAaeOxxPUgD6RqQvdhVJdz/Iha",
+          "isAdmin": false
+      },
+      {
+          "name": "Janet Zeta Jones",
+          "email": "janet.z.jones@gmail.com",
+          "password": "$2a$10$VKlLxM4VB0NYZUU/X4TUc.CgIWnOGkHDD692qoYUn2O4tJTEOaEdG",
+          "isAdmin": true
+      },
+      {
+          "name": "Samson Rerri",
+          "email": "samson.rerri@gmail.com",
+          "password": "$2a$10$6zjQUNLaRB8GuKk99fSbJeLDb4PVUitHumtSUrpbijN6q937lSyDS",
+          "isAdmin": true
+      },
+      {
+          "name": "Elise Nyota",
+          "email": "elise.nyota@example.com",
+          "password": "$2a$10$QHtChSz1Bdsl6W/9xCY57u1J5VtLCgTVYW6QtS6P3jdTOqPDVH7om",
+          "isAdmin": false
+      },
+      {
+          "name": "Parcey Ogaga",
+          "email": "parcey.ogaga@example.com",
+          "password": "$2a$10$DCMNfLXgpn97EIwozswhFuVHGitoUQjk9CZyR2E.Y/67oyBnThhRW",
+          "isAdmin": false
+      }
+  ]
+}

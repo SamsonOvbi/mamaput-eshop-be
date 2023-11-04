@@ -10,6 +10,7 @@ const orderRouter = require('./routers/order.routes');
 const productRouter = require('./routers/product.routes');
 const uploadRouter = require('./routers/upload.routes');
 const paymentRouter = require('./routers/payment.routes');
+const dBaseSeed = require('./db/seeder');
 // const log = require('console');
 
 dotenv.config();
@@ -31,6 +32,8 @@ app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
 app.use('/api/payments', paymentRouter);
+
+app.use('/data', dBaseSeed);
 app.get('/api/config/paypal', (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID || 'sb' });
 });

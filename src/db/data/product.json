@@ -1,0 +1,147 @@
+{
+  "productsData": [
+      {
+          "name": "Nike Slim Shirt",
+          "slug": "nike-slim-shirt",
+          "image": "../assets/images/p1.jpg",
+          "brand": "Nike",
+          "category": "Shirts",
+          "description": "high quality product",
+          "price": 120,
+          "countInStock": 10,
+          "rating": 4,
+          "numReviews": 2,
+          "reviews": [
+              {
+                  "name": "Samson Rerri",
+                  "comment": "Very good for outdoor too",
+                  "rating": 4,
+                  "_id": "652e43bf2aaad0951b815691"
+              },
+              {
+                  "name": "Janet Zeta Jones",
+                  "comment": "Very good outdoor shirt",
+                  "rating": 4,
+                  "_id": "652e46732aaad0951b8156ef"
+              }
+          ],
+          "__v": 2
+      },
+      {
+          "_id": "6526b569039a08b6eb8c64e3",
+          "name": "Adidas Fit Shirt",
+          "slug": "adidas-fit-shirt",
+          "image": "../assets/images/p2.jpg",
+          "brand": "Adidas",
+          "category": "Shirts",
+          "description": "high quality product",
+          "price": 100,
+          "countInStock": 20,
+          "rating": 3.5,
+          "numReviews": 2,
+          "reviews": [
+              {
+                  "name": "Samson Rerri",
+                  "comment": "Nice Shirt",
+                  "rating": 4,
+                  "_id": "652e419a2aaad0951b81566a"
+              },
+              {
+                  "name": "Janet Zeta Jones",
+                  "comment": "Very good outdoor shirt too",
+                  "rating": 3,
+                  "_id": "652e488d2aaad0951b815733"
+              }
+          ],
+          "__v": 2
+      },
+      {
+          "_id": "6526b569039a08b6eb8c64e4",
+          "name": "Lacoste Free Shirt",
+          "slug": "lacoste-free-shirt",
+          "image": "../assets/images/p3.jpg",
+          "brand": "Lacoste",
+          "category": "Shirts",
+          "description": "high quality product",
+          "price": 220,
+          "countInStock": 0,
+          "rating": 4,
+          "numReviews": 1,
+          "reviews": [
+              {
+                  "name": "Samson Rerri",
+                  "comment": "Very good outdoor shirt",
+                  "rating": 4,
+                  "_id": "652e431c2aaad0951b815679"
+              }
+          ],
+          "__v": 1
+      },
+      {
+          "_id": "6526b569039a08b6eb8c64e5",
+          "name": "Nike Slim Pant",
+          "slug": "nike-slim-pant",
+          "image": "../assets/images/p4.jpg",
+          "brand": "Nike",
+          "category": "Pants",
+          "description": "high quality product",
+          "price": 78,
+          "countInStock": 15,
+          "rating": 4,
+          "numReviews": 1,
+          "reviews": [
+              {
+                  "name": "Samson Rerri",
+                  "comment": "Very good work pants",
+                  "rating": 4,
+                  "_id": "652e45432aaad0951b8156c9"
+              }
+          ],
+          "__v": 1
+      },
+      {
+          "_id": "6526b569039a08b6eb8c64e6",
+          "name": "Puma Slim Pant",
+          "slug": "puma-slim-pant",
+          "image": "../assets/images/p5.jpg",
+          "brand": "Puma",
+          "category": "Pants",
+          "description": "high quality product",
+          "price": 65,
+          "countInStock": 5,
+          "rating": 5,
+          "numReviews": 1,
+          "reviews": [
+              {
+                  "name": "Samson Rerri",
+                  "comment": "Great product. ",
+                  "rating": 5,
+                  "_id": "652928443843880ed458e41c"
+              }
+          ],
+          "__v": 1
+      },
+      {
+          "_id": "6526b569039a08b6eb8c64e7",
+          "name": "Adidas Fit Pant",
+          "slug": "adidas-fit-pant",
+          "image": "../assets/images/p6.jpg",
+          "brand": "Adidas",
+          "category": "Pants",
+          "description": "high quality product",
+          "price": 139,
+          "countInStock": 12,
+          "rating": 4,
+          "numReviews": 1,
+          "reviews": [
+              {
+                  "name": "Samson Rerri",
+                  "comment": "Very good outdoor pants",
+                  "rating": 4,
+                  "_id": "652e414e2aaad0951b815657"
+              }
+          ],
+          "__v": 1
+      }
+  ]
+}

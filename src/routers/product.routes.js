@@ -5,6 +5,7 @@ const asyncHandler = require('express-async-handler');
 const UserModel = require('../db/models/user.model');
 const { isAdmin, isAuth } = require('../services/auth');
 const ProductModel = require('../db/models/product.model');
+const bookData = require('../db/data/book.data');
 const productData = require('../db/data/product.data');
 const userData = require('../db/data/user.data');
 
@@ -71,9 +72,10 @@ productRouter.get( '/categories', asyncHandler(async (req, res) => {
 productRouter.get( '/seed', asyncHandler(async (req, res) => {
     await UserModel.remove();
     await ProductModel.remove();
-    const createdUsers = await UserModel.insertMany(userData);
+    const createdBooks = await UserModel.insertMany(bookData);
     const createdProducts = await ProductModel.insertMany(productData);
-    res.send({ createdUsers, createdProducts });
+    const createdUsers = await UserModel.insertMany(userData);
+    res.send({ createdBooks, createdProducts, createdUsers });
   })
 );
 
@@ -149,8 +151,7 @@ productRouter.delete( '/:id', isAuth, isAdmin, asyncHandler(async (req, res) => 
   })
 );
 
-productRouter.post( '/:id/reviews',
-  isAuth, asyncHandler(async (req, res) => {
+productRouter.post( '/:id/reviews', isAuth, asyncHandler(async (req, res) => {
     const productId = req.params.id;
     const product = await ProductModel.findById(productId);
     if (product) {

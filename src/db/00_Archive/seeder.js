@@ -5,12 +5,11 @@ const { faker } = require('@faker-js/faker'); const fs = require('fs');
 // const mongoose = require('mongoose');
 
 // Load models
-const ProductModel = require('./models/product.model');
 const ArticleModel = require('./models/article.model');
-const UserModel = require('./models/user.model');
-const RoleModel = require('./models/role.model');
 const CategoryModel = require('./models/category.model');
-
+const ProductModel = require('./models/product.model');
+const RoleModel = require('./models/role.model');
+const UserModel = require('./models/user.model');
 
 const dBaseSeed = express.Router();
 
@@ -19,12 +18,11 @@ const dBaseSeed = express.Router();
 
 dBaseSeed.get('/generate-seed-data', (req, res) => {
 
-  const products = [];
   const articles = [];
+  const categories = [];
+  const products = [];
   const users = [];
   const roles = [];
-  const categories = [];
-
 
   for (let i = 0; i < 12; i++) {
     2
@@ -85,31 +83,29 @@ dBaseSeed.get('/insert-json-data', (req, res) => {
   // const { products, articles, users, roles, categories } = req.body;
   const { articles } = req.body;
 
-  // fs.writeFile('DB/data/products.json', JSON.stringify(products), (err) => {
-  //   if (err) throw err;
-  //   console.log('Products data inserted into products.json');
-  // });
-
-
-  fs.writeFile('DB/data/articles.json', JSON.stringify(articles), (err) => {
+  fs.writeFile('db/data/articles.json', JSON.stringify(articles), (err) => {
     if (err) throw err;
     console.log('Articles data inserted into articles.json');
   });
 
-  // fs.writeFile('DB/data/users.json', JSON.stringify(users), (err) => {
+  // fs.writeFile('db/data/categories.json', JSON.stringify(categories), (err) => {
   //   if (err) throw err;
-  //   console.log('Users data inserted into users.json');
+  //   console.log('Categories data inserted into categories.json');
   // });
 
+  // fs.writeFile('db/data/products.json', JSON.stringify(products), (err) => {
+  //   if (err) throw err;
+  //   console.log('Products data inserted into products.json');
+  // });
 
-  // fs.writeFile('DB/data/roles.json', JSON.stringify(roles), (err) => {
+  // fs.writeFile('db/data/roles.json', JSON.stringify(roles), (err) => {
   //   if (err) throw err;
   //   console.log('Roles data inserted into roles.json');
   // });
 
-  // fs.writeFile('DB/data/categories.json', JSON.stringify(categories), (err) => {
+  // fs.writeFile('db/data/users.json', JSON.stringify(users), (err) => {
   //   if (err) throw err;
-  //   console.log('Categories data inserted into categories.json');
+  //   console.log('Users data inserted into users.json');
   // });
 
   res.send('data inserted into JSON files');
@@ -118,21 +114,22 @@ dBaseSeed.get('/insert-json-data', (req, res) => {
 // Populate MySQL database with JSON data:
 
 dBaseSeed.get('/populate-database', async (req, res) => {
-  const productsData = require('./data/products.json');
+
   const articlesData = require('./data/articles.json');
-  const usersData = require('./data/users.json');
-  const rolesData = require('./data/roles.json');
   const categoriesData = require('./data/categories.json');
+  const productsData = require('./data/products.json');
+  const rolesData = require('./data/roles.json');
+  const usersData = require('./data/users.json');
 
   try {
-    await ProductModel.create(productsData);
     await ArticleModel.create(articlesData);
-    await UserModel.create(usersData);
-    await RoleModel.create(rolesData);
     await CategoryModel.create(categoriesData);
+    await RoleModel.create(rolesData);
+    await ProductModel.create(productsData);
+    await UserModel.create(usersData);
 
-    console.log('Data Imported into DB...');
-    res.send('Data Imported into DB...');
+    console.log('Data Imported into db...');
+    res.send('Data Imported into db...');
   } catch (err) {
     console.error(err);
   }
@@ -143,13 +140,13 @@ dBaseSeed.get('/read-database', async (req, res) => {
   let productsData, usersData, articlesData, categoriesData, rolesData;
 
   try {
-    productsData = await ProductModel.find();
     articlesData = await ArticleModel.find();
-    usersData = await UserModel.find();
-    rolesData = await RoleModel.find();
     categoriesData = await CategoryModel.find();
+    productsData = await ProductModel.find();
+    rolesData = await RoleModel.find();
+    usersData = await UserModel.find();
 
-    console.log('Data read from DB...');
+    console.log('Data read from db...');
     res.json({ productsData, usersData, articlesData, categoriesData, rolesData });
   } catch (err) {
     console.error(err);
@@ -159,11 +156,11 @@ dBaseSeed.get('/read-database', async (req, res) => {
 
 dBaseSeed.get('/delete-collections', async (req, res) => {
   try {
-    await ProductModel.deleteMany();
     await ArticleModel.deleteMany();
-    await UserModel.deleteMany();
-    await RoleModel.deleteMany();
     await CategoryModel.deleteMany();
+    await ProductModel.deleteMany();
+    await RoleModel.deleteMany();
+    await UserModel.deleteMany();
 
     console.log('Data Destroyed...');
     res.json('Data Destroyed...');

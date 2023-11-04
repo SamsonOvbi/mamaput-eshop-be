@@ -7,12 +7,12 @@ const fs = require('fs');
 // Load models
 const BookModel = require('./models/book.model');
 const CategoryModel = require('./models/category.model');
+const OrderModel = require('./models/order.model');
 const ProductModel = require('./models/product.model');
 const RoleModel = require('./models/role.model');
 const UserModel = require('./models/user.model');
 
 const dBaseSeed = express.Router();
-
 
 // Faker generate 12 seed data for each table:;
 
@@ -20,21 +20,24 @@ dBaseSeed.get('/generate-seed-data', (req, res) => {
   const books = [];
   const categories = [];
   const products = [];
-  const users = [];
   const roles = [];
+  const users = [];
 
   for (let i = 0; i < 12; i++) {
+    const bookName = faker.commerce.productName();
     const book = {
-      isbn: faker.number.int({length: 13}),
-      title: faker.commerce.productName(),
+      isbn: faker.number.int({ length: 13 }),
+      title: bookName,
+      slug: faker.helpers.slugify(bookName.toLocaleLowerCase()),
+      category: faker.commerce.department(),
+      image: faker.image.urlPicsumPhotos({ width: 240, height: 240 }),
       subtitle: faker.commerce.productName(),
-      slug: faker.commerce.productName(),
-      author: faker.commerce.productName(),
-      published: faker.commerce.productName(),
-      publisher: faker.commerce.productName(),
-      pages: faker.number.int({length: 13}),
+      author: faker.person.fullName(),
+      published: faker.date.past({ years: 2 }),
+      publisher: faker.commerce.department(),
+      pages: faker.number.int({ min: 40, max: 127 }),
       description: faker.commerce.productDescription(),
-      website: faker.internet.website(),
+      website: faker.internet.url(),
     };
     books.push(book);
 
@@ -43,16 +46,18 @@ dBaseSeed.get('/generate-seed-data', (req, res) => {
     };
     categories.push(category);
 
+    const prodName = faker.commerce.productName();
+
     const product = {
-      name: faker.commerce.productName(),
-      slug: faker.commerce.slugify(faker.commerce.productName()),
-      image: faker.image.urlPicsumPhotos({ width: 240, height: 240 }),
-      brand: faker.commerce.productName(),
+      name: prodName,
+      slug: faker.helpers.slugify(prodName.toLowerCase()),
       category: faker.commerce.department(),
+      image: faker.image.urlPicsumPhotos({ width: 240, height: 240 }),
       description: faker.commerce.productDescription(),
+      brand: faker.commerce.productName(),
       price: faker.commerce.price({ min: 4, max: 150 }),
-      countInStock: faker.number.int(),
-      rating: faker.number.int({ min: 1, max: 5 })
+      countInStock: faker.number.int({ min: 10, max: 57 }),
+      rating: faker.number.float({ min: 2, max: 5, precision: 0.1 })
     };
     products.push(product);
 
@@ -65,20 +70,21 @@ dBaseSeed.get('/generate-seed-data', (req, res) => {
     };
     roles.push(role);
 
+    const fName = faker.person.firstName();
+    const lName = faker.person.lastName();
     const user = {
-      name: faker.person.fullName(),
-      phone: faker.phone.number(),
-      email: faker.internet.email(),
+      name: faker.person.fullName({ firstName: fName, lastName: lName }),
+      phone: faker.number.int({ length: 11, min: 70200000000, max: 92000000000 }),
+      email: faker.internet.email({ firstName: fName.toLowerCase(), lastName: lName.toLowerCase() }),
       password: faker.internet.password({ length: 7 }),
       status: faker.string.fromCharacters(['true', 'false']),
-      role: faker.string.fromCharacters(['admin', 'user'])
+      role: faker.string.fromCharacters(['user', 'guest'])
     };
     users.push(user);
 
-
   }
 
-    res.json({ products, books, users, roles, categories });
+  res.json({ books, categories, products, roles, users });
 
 });
 
@@ -86,31 +92,30 @@ dBaseSeed.get('/generate-seed-data', (req, res) => {
 // Insert seed data into JSON files:
 
 dBaseSeed.get('/insert-json-data', (req, res) => {
-  // const { books, categories, orders, products, users, roles } = req.body;
-  const { books, categories, products, users, roles } = req.body;
+  // const { books, categories, orders, products, roles, users } = req.body;
+  const { books, categories, products, roles, users } = req.body;
 
-
-  fs.writeFile('DB/data/books.json', JSON.stringify(books), (err) => {
+  fs.writeFile('src/db/data/books.json', JSON.stringify(books), (err) => {
     if (err) throw err;
     console.log('Books data inserted into books.json');
   });
 
-  fs.writeFile('DB/data/categories.json', JSON.stringify(categories), (err) => {
+  fs.writeFile('db/data/categories.json', JSON.stringify(categories), (err) => {
     if (err) throw err;
     console.log('Categories data inserted into categories.json');
   });
 
-  fs.writeFile('DB/data/products.json', JSON.stringify(products), (err) => {
+  fs.writeFile('src/db/data/products.json', JSON.stringify(products), (err) => {
     if (err) throw err;
     console.log('Products data inserted into products.json');
   });
 
-  fs.writeFile('DB/data/roles.json', JSON.stringify(roles), (err) => {
+  fs.writeFile('db/data/roles.json', JSON.stringify(roles), (err) => {
     if (err) throw err;
     console.log('Roles data inserted into roles.json');
   });
 
-  fs.writeFile('DB/data/users.json', JSON.stringify(users), (err) => {
+  fs.writeFile('src/db/data/users.json', JSON.stringify(users), (err) => {
     if (err) throw err;
     console.log('Users data inserted into users.json');
   });
@@ -124,36 +129,38 @@ dBaseSeed.get('/populate-database', async (req, res) => {
   const booksData = require('./data/books.json');
   const categoriesData = require('./data/categories.json');
   const productsData = require('./data/products.json');
-  const usersData = require('./data/users.json');
   const rolesData = require('./data/roles.json');
+  const usersData = require('./data/users.json');
 
   try {
     await BookModel.create(booksData);
     await CategoryModel.create(categoriesData);
     await ProductModel.create(productsData);
-    await UserModel.create(usersData);
     await RoleModel.create(rolesData);
+    await UserModel.create(usersData);
 
-    console.log('Data Imported...');
-    res.send('Data Imported into DB...');
+    console.log('Data Imported into db...');
+    res.send('Data Imported into db...');
   } catch (err) {
     console.error(err);
   }
 
 });
 
-dBaseSeed.get('/get-database', async (req, res) => {
-  let productsData, usersData, booksData, categoriesData, rolesData ;
+dBaseSeed.get('/read-database', async (req, res) => {
+  let booksData, categoriesData, ordersData, productsData, rolesData, usersData;
 
   try {
     booksData = await BookModel.find();
-    categoriesData = await CategoryModel.find();
-    productsData = await ProductModel.find();
-    usersData = await UserModel.find();
-    rolesData = await RoleModel.find();
+    // categoriesData = await CategoryModel.find();
+    // ordersData = await OrderModel.find();
+    // productsData = await ProductModel.find();
+    // rolesData = await RoleModel.find();
+    // usersData = await UserModel.find();
 
-    console.log('Data read from database...');
-    res.json({ productsData, usersData, booksData, categoriesData, rolesData });
+    console.log('Data read from database...', res.json({ booksData }));
+    // res.json({ booksData, categoriesData, ordersData, productsData, rolesData, usersData });
+    return ({ booksData, categoriesData, ordersData, productsData, rolesData, usersData });
   } catch (err) {
     console.error(err);
   }
@@ -162,11 +169,12 @@ dBaseSeed.get('/get-database', async (req, res) => {
 
 dBaseSeed.get('/delete-collections', async (req, res) => {
   try {
-    await BookModel.deleteMany();
-    await CategoryModel.deleteMany();
-    await ProductModel.deleteMany();
-    await UserModel.deleteMany();
-    await RoleModel.deleteMany();
+    // await BookModel.deleteMany();
+    // await CategoryModel.deleteMany();
+    await OrderModel.deleteMany();
+    // await ProductModel.deleteMany();
+    // await RoleModel.deleteMany();
+    // await UserModel.deleteMany();
 
     console.log('Data Destroyed...');
     res.json('Data Destroyed...');

@@ -1,0 +1,134 @@
+[
+  {
+    "name": "Fantastic Granite Gloves",
+    "slug": "fantastic-granite-gloves",
+    "category": "Electronics",
+    "image": "https://picsum.photos/seed/KzJmp/240/240",
+    "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+    "brand": "Licensed Concrete Table",
+    "price": "135.00",
+    "countInStock": 42,
+    "rating": 5
+  },
+  {
+    "name": "Fantastic Fresh Cheese",
+    "slug": "fantastic-fresh-cheese",
+    "category": "Garden",
+    "image": "https://picsum.photos/seed/df4qFw/240/240",
+    "description": "New ABC 13 9370, 13.3, 5th Gen CoreA5-8250U, 8GB RAM, 256GB SSD, power UHD Graphics, OS 10 Home, OS Office A & J 2016",
+    "brand": "Incredible Wooden Cheese",
+    "price": "61.00",
+    "countInStock": 43,
+    "rating": 2.6
+  },
+  {
+    "name": "Sleek Plastic Salad",
+    "slug": "sleek-plastic-salad",
+    "category": "Home",
+    "image": "https://picsum.photos/seed/fvZm4/240/240",
+    "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+    "brand": "Rustic Bronze Salad",
+    "price": "11.00",
+    "countInStock": 15,
+    "rating": 3
+  },
+  {
+    "name": "Unbranded Cotton Soap",
+    "slug": "unbranded-cotton-soap",
+    "category": "Games",
+    "image": "https://picsum.photos/seed/a3CXacO/240/240",
+    "description": "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality",
+    "brand": "Awesome Metal Sausages",
+    "price": "56.00",
+    "countInStock": 43,
+    "rating": 4.4
+  },
+  {
+    "name": "Luxurious Frozen Shoes",
+    "slug": "luxurious-frozen-shoes",
+    "category": "Industrial",
+    "image": "https://picsum.photos/seed/NqJjGVy/240/240",
+    "description": "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals",
+    "brand": "Tasty Bronze Mouse",
+    "price": "100.00",
+    "countInStock": 45,
+    "rating": 3.1
+  },
+  {
+    "name": "Elegant Fresh Sausages",
+    "slug": "elegant-fresh-sausages",
+    "category": "Garden",
+    "image": "https://picsum.photos/seed/RR7HZ/240/240",
+    "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+    "brand": "Generic Fresh Car",
+    "price": "64.00",
+    "countInStock": 33,
+    "rating": 2.7
+  },
+  {
+    "name": "Luxurious Soft Pants",
+    "slug": "luxurious-soft-pants",
+    "category": "Electronics",
+    "image": "https://picsum.photos/seed/KsMmC3E/240/240",
+    "description": "The Apollotech B340 is an affordable wireless mouse with reliable connectivity, 12 months battery life and modern design",
+    "brand": "Incredible Cotton Shoes",
+    "price": "108.00",
+    "countInStock": 53,
+    "rating": 4
+  },
+  {
+    "name": "Electronic Metal Bike",
+    "slug": "electronic-metal-bike",
+    "category": "Automotive",
+    "image": "https://picsum.photos/seed/Tnxynuru/240/240",
+    "description": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+    "brand": "Modern Frozen Chicken",
+    "price": "62.00",
+    "countInStock": 14,
+    "rating": 3.5
+  },
+  {
+    "name": "Licensed Granite Shirt",
+    "slug": "licensed-granite-shirt",
+    "category": "Sports",
+    "image": "https://picsum.photos/seed/lWwroS/240/240",
+    "description": "The Nagasaki Lander is the trademarked name of several series of Nagasaki sport bikes, that started with the 1984 ABC800J",
+    "brand": "Unbranded Wooden Table",
+    "price": "39.00",
+    "countInStock": 45,
+    "rating": 2.1
+  },
+  {
+    "name": "Practical Plastic Shirt",
+    "slug": "practical-plastic-shirt",
+    "category": "Games",
+    "image": "https://picsum.photos/seed/JLFcAZLT/240/240",
+    "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+    "brand": "Fantastic Frozen Pants",
+    "price": "81.00",
+    "countInStock": 18,
+    "rating": 2
+  },
+  {
+    "name": "Small Wooden Cheese",
+    "slug": "small-wooden-cheese",
+    "category": "Beauty",
+    "image": "https://picsum.photos/seed/eEFdBw/240/240",
+    "description": "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles",
+    "brand": "Generic Rubber Soap",
+    "price": "96.00",
+    "countInStock": 19,
+    "rating": 2.4
+  },
+  {
+    "name": "Elegant Soft Chicken",
+    "slug": "elegant-soft-chicken",
+    "category": "Kids",
+    "image": "https://picsum.photos/seed/7ucd4tm6u/240/240",
+    "description": "Ergonomic executive chair upholstered in bonded black leather and PVC padded seat and back for all-day comfort and support",
+    "brand": "Incredible Soft Keyboard",
+    "price": "63.00",
+    "countInStock": 22,
+    "rating": 2.5
+  }
+]
