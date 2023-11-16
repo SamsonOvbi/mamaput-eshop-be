@@ -6,10 +6,7 @@ mongoose.set('strictQuery', true);
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/ts-backend';
 mongoose.Promise = global.Promise;
 const options = {
-  useNewUrlParser: true,
-  // useCreateIndex: true,
-  // useFindAndModify: false,
-  useUnifiedTopology: true
+  useNewUrlParser: true, useUnifiedTopology: true
 };
 const connectDB = () => {
   mongoose.connect(mongoUri, options)

@@ -2,14 +2,12 @@
 
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-// const UserModel = require('../db/models/user.model');
+const UserModel = require('../db/models/user.model');
 const { isAdmin, isAuth } = require('../services/auth');
 const ProductModel = require('../db/models/product.model');
-// const bookData = require('../db/data/book.data');
+const bookData = require('../db/data/book.data');
 const productData = require('../db/data/product.data');
-// const userData = require('../db/data/user.data');
-// const BookModel = require('../db/models/book.model');
-// const ArticleModel = require('../db/models/article.model');
+const userData = require('../db/data/user.data');
 
 const productRoute = express.Router();
 
@@ -74,17 +72,12 @@ productRoute.get('/categories', asyncHandler(async (req, res) => {
 
 // productRoute.get( '/seed', asyncHandler(async (req, res) => {
 productRoute.post('/seed', asyncHandler(async (req, res) => {
-  // await ArticleModel.deleteMany();
-  // await BookModel.deleteMany();
-  await ProductModel.deleteMany();
-  // await UserModel.deleteMany();
-
-  // const createdArticles = await ArticleModel.insertMany(articleData);
-  // const createdBooks = await BookModel.insertMany(bookData);
+  await UserModel.remove();
+  await ProductModel.remove();
+  const createdBooks = await UserModel.insertMany(bookData);
   const createdProducts = await ProductModel.insertMany(productData);
-  // const createdUsers = await UserModel.insertMany(userData);
-  // res.send({ createdBooks, createdProducts, createdUsers, createdArticles });
-  res.send({ createdProducts });
+  const createdUsers = await UserModel.insertMany(userData);
+  res.send({ createdBooks, createdProducts, createdUsers });
 })
 );
 

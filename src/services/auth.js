@@ -24,9 +24,7 @@ const isAuth = (req, res, next) => {
   if (authorization) {
     // const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
     const token = authorization.split(' ')[1]; // Bearer XXXXXX
-    const decode = jwt.verify( token,
-      process.env.JWT_SECRET || 'somethingsecret'
-    );
+    const decode = jwt.verify( token, process.env.JWT_SECRET || 'somethingsecret' );
     req.user = decode;
     // console.log(`req.user: `); console.log(req.user);
     next();

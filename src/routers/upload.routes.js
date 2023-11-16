@@ -10,11 +10,10 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { isAdmin, isAuth } = require('../services/auth');
 
-const uploadRouter = express.Router();
-
+const uploadRoute = express.Router();
 const upload = multer();
-uploadRouter.post( '/', isAuth, isAdmin,
-  upload.single('image'), asyncHandler(async (req, res) => {
+
+uploadRoute.post( '/', isAuth, isAdmin, upload.single('image'), asyncHandler(async (req, res) => {
     cloudinary.config({
       cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
       api_key: process.env.CLOUDINARY_API_KEY,
@@ -53,7 +52,8 @@ uploadRouter.post( '/', isAuth, isAdmin,
 
 // const upload = multer({ storage });
 
-// uploadRouter.post('/', isAuth, upload.single('image'), (req, res) => {
+// uploadRoute.post('/', isAuth, upload.single('image'), (req, res) => {
 //   res.send({ image: `/${req.file.path}` });
 // });
-module.exports = uploadRouter;
+
+module.exports = uploadRoute;

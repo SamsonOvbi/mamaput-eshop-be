@@ -7,7 +7,7 @@ const roleSchema = new mongoose.Schema({
   text: { type: String, required: true, unique: true },
   rating: { type: Number, required: true, default: 0 },
   bootcamp: { type: String, required: true },
-  user: { type: Boolean, required: true, default: false },
+  user: { type: String, required: true, default: 'guest' },
 }, { timestamps: true });
 
 const RoleModel = mongoose.model('Role', roleSchema)

@@ -7,15 +7,15 @@ const { isAdmin, isAuth } = require('../services/auth');
 const OrderModel = require('../db/models/order.model');
 const ProductModel = require('../db/models/product.model');
 
-const orderRouter = express.Router();
+const orderRoute = express.Router();
 
-orderRouter.get( '/', isAuth, isAdmin, asyncHandler(async (req, res) => {
+orderRoute.get( '/', isAuth, isAdmin, asyncHandler(async (req, res) => {
   const orders = await OrderModel.find().populate('user', 'name');
   res.send(orders);
 })
 );
 
-orderRouter.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
+orderRoute.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const orders = await OrderModel.aggregate([{
         $group: {
           _id: null,
@@ -51,13 +51,13 @@ orderRouter.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
   })
 );
 
-orderRouter.get( '/history', isAuth, asyncHandler(async (req, res) => {
+orderRoute.get( '/history', isAuth, asyncHandler(async (req, res) => {
     const orders = await OrderModel.find({ user: req.user._id });
     res.send(orders);
   })
 );
 
-orderRouter.post( '/', isAuth, asyncHandler(async (req, res) => {
+orderRoute.post( '/', isAuth, asyncHandler(async (req, res) => {
   console.log('req.body.items.length: ' + req.body.items.length);
     if (req.body.items.length === 0) {
       res.status(400).send({ message: 'Cart is empty' });
@@ -78,7 +78,7 @@ orderRouter.post( '/', isAuth, asyncHandler(async (req, res) => {
   })
 );
 
-orderRouter.get( '/:id', isAuth, asyncHandler(async (req, res) => {
+orderRoute.get( '/:id', isAuth, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     console.log('req.params.id: ' + req.params.id);
     // console.log('order: ' + order);
@@ -90,7 +90,7 @@ orderRouter.get( '/:id', isAuth, asyncHandler(async (req, res) => {
   })
 );
 
-orderRouter.put( '/:id/pay', isAuth, asyncHandler(async (req, res) => {
+orderRoute.put( '/:id/pay', isAuth, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id).populate('user');
 
     if (order) {
@@ -111,7 +111,7 @@ orderRouter.put( '/:id/pay', isAuth, asyncHandler(async (req, res) => {
   })
 );
 
-orderRouter.delete( '/:id', isAuth, isAdmin, asyncHandler(async (req, res) => {
+orderRoute.delete( '/:id', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     if (order) {
       const deleteOrder = await order.remove();
@@ -122,7 +122,7 @@ orderRouter.delete( '/:id', isAuth, isAdmin, asyncHandler(async (req, res) => {
   })
 );
 
-orderRouter.put( '/:id/deliver', isAuth, isAdmin, asyncHandler(async (req, res) => {
+orderRoute.put( '/:id/deliver', isAuth, isAdmin, asyncHandler(async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     if (order) {
       order.isDelivered = true;
@@ -137,4 +137,4 @@ orderRouter.put( '/:id/deliver', isAuth, isAdmin, asyncHandler(async (req, res) 
   })
 );
 
-module.exports = orderRouter;
+module.exports = orderRoute;

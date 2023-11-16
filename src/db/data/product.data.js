@@ -15,6 +15,7 @@ const productData = [
     rating: 4.5,
     numReviews: 10,
     reviews: [],
+    website: "",
   },
   {
     name: 'Adidas Fit Shirt',

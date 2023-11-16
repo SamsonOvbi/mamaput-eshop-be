@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Women's Black T-Shirt",
+    "price": 20,
+    "description": "A classic black t-shirt that is perfect for everyday wear.",
+    "image": "https://example.com/images/products/womens-black-t-shirt.jpg",
+    "category": "Women's Tops"
+  },
+  {
+    "name": "Men's Blue Jeans",
+    "price": 50,
+    "description": "A pair of comfortable and stylish blue jeans that are perfect for any occasion.",
+    "image": "https://example.com/images/products/mens-blue-jeans.jpg",
+    "category": "Men's Bottoms"
+  },
+  {
+    "name": "Women's Red Dress",
+    "price": 100,
+    "description": "A beautiful red dress that is perfect for a special occasion.",
+    "image": "https://example.com/images/products/womens-red-dress.jpg",
+    "category": "Women's Dresses"
+  },
+  {
+    "name": "Men's Black Suit",
+    "price": 200,
+    "description": "A sharp black suit that is perfect for a job interview or special event.",
+    "image": "https://example.com/images/products/mens-black-suit.jpg",
+    "category": "Men's Suits"
+  },
+  {
+    "name": "Women's White Sneakers",
+    "price": 30,
+    "description": "A pair of comfortable and stylish white sneakers that are perfect for everyday wear.",
+    "image": "https://example.com/images/products/womens-white-sneakers.jpg",
+    "category": "Women's Shoes"
+  },
+  {
+    "name": "Men's Brown Boots",
+    "price": 70,
+    "description": "A pair of durable and stylish brown boots that are perfect for any occasion.",
+    "image": "https://example.com/images/products/mens-brown-boots.jpg",
+    "category": "Men's Shoes"
+  },
+  {
+    "name": "Women's Black Handbag",
+    "price": 50,
+    "description": "A sleek and stylish black handbag that is perfect for everyday wear.",
+    "image": "https://example.com/images/products/womens-black-handbag.jpg",
+    "category": "Women's Accessories"
+  },
+  {
+    "name": "Men's Black Watch",
+    "price": 100,
+    "description": "A classic and stylish black watch that is perfect for any occasion.",
+    "image": "https://example.com/images/products/mens-black-watch.jpg",
+    "category": "Men's Accessories"
+  },
+  {
+    "name": "Women's Sunglasses",
+    "price": 30,
+    "description": "A pair of protective and stylish sunglasses that are perfect for any occasion.",
+    "image": "https://example.com/images/products/womens-sunglasses.jpg",
+    "category": "Women's Accessories"
+  },
+  {
+    "name": "Men's Baseball Cap",
+    "price": 20,
+    "description": "A stylish and comfortable baseball cap that is perfect for everyday wear.",
+    "image": "https://example.com/images/products/mens-baseball-cap.jpg",
+    "category": "Men's Accessories"
+  }
+]

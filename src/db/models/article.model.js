@@ -8,13 +8,13 @@ const reviewSchema = new mongoose.Schema({
   rating: { type: Number, required: true },
 }, { timeStamps: true });
 
-const bookSchema = new mongoose.Schema({
+const ArticleSchema = new mongoose.Schema({
   name: { type: String, required: true },
   slug: { type: String, required: true, unique: true },
   image: { type: String, required: true },
   brand: { type: String, required: true },
   category: { type: String, required: true },
-  website: { type: String, default: '' },
+  content: { type: String, },
   description: { type: String, required: true },
   price: { type: Number, required: true, default: 0 },
   countInStock: { type: Number, required: true, default: 0 },
@@ -23,5 +23,5 @@ const bookSchema = new mongoose.Schema({
   reviews: [ reviewSchema ],
 }, { timeStamps: true });
 
-const BookModel = mongoose.model('Book', bookSchema);
-module.exports = BookModel;
+const ArticleModel = mongoose.model('Article', ArticleSchema)
+module.exports = ArticleModel;
