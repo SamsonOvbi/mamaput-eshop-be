@@ -38,7 +38,7 @@ productRoute.get('/', asyncHandler(async (req, res) => {
 );
 
 productRoute.get('/paged', asyncHandler(async (req, res) => {
-  const pageSize = 3;
+  const pageSize = Number(req.query.pageSize) || 3;
   const page = Number(req.query.pageNumber) || 1;
   const name = (req.query.name || '');
   const category = (req.query.category || '');

@@ -30,13 +30,13 @@ app.use(express.urlencoded({ extended: false }));
 
 connectDB();
 
+app.use('/seeder', dBaseSeed);
 app.use('/api/uploads', uploadRoute);
 app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
 app.use('/api/orders', orderRoute);
 app.use('/api/paypal', paypalRoute);
 app.use('/api/stripe', stripeRoute);
-app.use('/data', dBaseSeed);
 
 app.get('/', (req, res) =>
   res.send({message: 'Welcome to Mama Blog express server'})
