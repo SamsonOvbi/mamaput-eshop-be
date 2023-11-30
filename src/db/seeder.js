@@ -12,25 +12,25 @@ const UserModel = require('./models/user.model');
 const dBaseSeed = express.Router();
 
 // Populate MySQL database with JSON data:
-
-dBaseSeed.post('/populate-database', async (req, res) => {
+// dBaseSeed.post('/populate-database', async (req, res) => {
+dBaseSeed.get('/populate-database', async (req, res) => {
   // const booksData = require('./data/books.json');
-  const fakerStoreData = require('./data/faker-store.json');
-  // const productsData = require('./data/products.json');
+  // const fakerStoreData = require('./data/faker-store.json');
+  const productsData = require('./data/products.json');
   // const rolesData = require('./data/roles.json');
   // const usersData = require('./data/users.json');
 
   try {
     // await BookModel.create(booksData);
     // await CategoryModel.create(categoriesData);
-    await ProductModel.create(fakerStoreData);
-    // await ProductModel.create(productsData);
+    // await ProductModel.create(fakerStoreData);
+    await ProductModel.create(productsData);
     // await RoleModel.create(productsData);
     // await UserModel.create(usersData);
 
     // const results = { booksData, fakerStoreData, productsData, rolesData, usersData };
-    const results = { fakerStoreData, };
-    console.log(results.fakerStoreData);
+    const results = { productsData, };
+    console.log(results.productsData);
     res.send('Data Imported into db...');
   } catch (err) {
     console.error(err);
@@ -59,7 +59,8 @@ dBaseSeed.get('/read-database', async (req, res) => {
 
 });
 
-dBaseSeed.post('/delete-database', async (req, res) => {
+// dBaseSeed.post('/delete-database', async (req, res) => {
+dBaseSeed.get('/delete-database', async (req, res) => {
   try {
     // await BookModel.deleteMany();
     // await CategoryModel.deleteMany();
