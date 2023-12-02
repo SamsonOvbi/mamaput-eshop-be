@@ -24,7 +24,8 @@ productContr.getAllProducts = asyncHandler(async (req, res) => {
   await ProductModel.find({
     ...nameFilter, ...categoryFilter, ...priceFilter, ...ratingFilter
   })
-    .select(['-_id']).limit(limit)
+    // .select(['-_id']).limit(limit)
+    .limit(limit)
     // .sort({ id: sort })
     .sort(sortOrder)
     .then((products) => {

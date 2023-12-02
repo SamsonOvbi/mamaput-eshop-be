@@ -5,7 +5,9 @@ const stripeRoute = express.Router();
 
 //Stripe Checkout Implementation
 const stripe = require('stripe')('sk_test_51MieJTExOuRzEOei54rp1sF0La9Cs9Dn51BjVpphdDgy8G6tocCmd0plEjtmUgcDGVUbbb3he588d3s6GDeEI4SQ00sCMXpNnO');
-stripeRoute.post('/checkout', async (req, res, next) => {
+
+// stripeRoute.post('/checkout', async (req, res, next) => {
+stripeRoute.checkout = async (req, res, next) => {
   try {
     const purchasedItems = req.body.items;
     const session = await stripe.checkout.sessions.create({
@@ -56,10 +58,10 @@ stripeRoute.post('/checkout', async (req, res, next) => {
   } catch {
     err => next(err);
   }
-});
+};
 
-stripeRoute.get('/', (req, res) => {
+stripeRoute.get =  (req, res) => {
   res.status(200).json({ message1: 'Welcome to stripe/checkout server ' });
-});
+};
 
 module.exports = stripeRoute;

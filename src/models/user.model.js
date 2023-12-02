@@ -19,13 +19,14 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  name: {
+  names: {
     firstname: { type: String, },
     lastname: { type: String, },
   },
   isAdmin: { type: Boolean, required: true, default: false },
   address: [addressSchema],
-  phone: { type: String, required: true, default: '' },
+  // phone: { type: String, required: true, default: '' },
+  phone: { type: String, default: '' },
 }, { timeStamps: true });
 
 const UserModel = mongoose.model('User', userSchema)

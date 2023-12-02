@@ -1,16 +1,16 @@
 const asyncHandler = require("express-async-handler");
-const UserModel = require("../src/db/models/user.model");
 const bcrypt = require('bcryptjs');
 const { generateToken, } = require('../services/auth');
+const UserModel = require("../models/user.model");
 
 const userContr = {}
 
 userContr.getAllUsers = asyncHandler(async (req, res) => {
-  const limit = Number(req.query.limit) || 20;
-  const sort = req.query.sort == 'desc' ? -1 : 1;
+  // const limit = Number(req.query.limit) || 20;
+  // const sort = req.query.sort == 'desc' ? -1 : 1;
+  // const users = await UserModel.find().select(['-_id']).limit(limit).sort({ id: sort, })
 
-  const users = await UserModel.find().select(['-_id']).limit(limit).sort({ id: sort, })
-  // const users = await UserModel.find({});
+  const users = await UserModel.find({});
   res.send(users);
 });
 
@@ -35,7 +35,7 @@ userContr.addUser = asyncHandler(async (req, res) => {
     const reqBody = {
       id: userCount + 1, email: body.email, username: body.username,
       password: bcrypt.hashSync(req.body.password),
-      name: {
+      names: {
         firstname: body.firstname,
         lastname: body.lastname,
       },
@@ -68,7 +68,7 @@ userContr.login = asyncHandler(async (req, res) => {
     if (bcrypt.compareSync(req.body.password, user.password)) {
       // return res.send({
       const resBody = {
-        _id: user._id, name: user.name, email: user.email,
+        _id: user._id, username: user.username, email: user.email,
         isAdmin: user.isAdmin, token: generateToken(user),
       };
       res.send(resBody);
@@ -92,7 +92,7 @@ userContr.updateProfile = asyncHandler(async (req, res) => {
     if (user) {
       user.email = body.email;
       user.username = body.username;
-      user.name = {
+      user.names = {
         firstname: body.firstname,
         lastname: body.lastname,
       };
@@ -133,11 +133,12 @@ userContr.editUser = asyncHandler(async (req, res) => {
     const user = await UserModel.findById(req.params.id);
     if (user) {
       user.email = body.email;
+      // user.username = body.username;
       user.username = body.username;
-      user.name = {
-        firstname: body.firstname,
-        lastname: body.lastname,
-      };
+      // user.names = {
+      //   firstname: body.firstname,
+      //   lastname: body.lastname,
+      // };
       const updatedUser = await user.save();
       const { password, ...rest } = updatedUser;
       let pass = pass || password;

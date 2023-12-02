@@ -3,11 +3,11 @@
 const express = require('express');
 
 // Load models
-const BookModel = require('./models/book.model');
-const OrderModel = require('./models/order.model');
-const ProductModel = require('./models/product.model');
-const RoleModel = require('./models/role.model');
-const UserModel = require('./models/user.model');
+const BookModel = require('../models/book.model');
+const OrderModel = require('../models/order.model');
+const ProductModel = require('../models/product.model');
+const RoleModel = require('../models/role.model');
+const UserModel = require('../models/user.model');
 
 const dBaseSeed = express.Router();
 
@@ -16,21 +16,21 @@ const dBaseSeed = express.Router();
 dBaseSeed.get('/populate-database', async (req, res) => {
   // const booksData = require('./data/books.json');
   // const fakerStoreData = require('./data/faker-store.json');
-  const productsData = require('./data/products.json');
+  // const productsData = require('./data/products.json');
   // const rolesData = require('./data/roles.json');
-  // const usersData = require('./data/users.json');
+  const usersData = require('./data/user.data.js');
 
   try {
     // await BookModel.create(booksData);
     // await CategoryModel.create(categoriesData);
     // await ProductModel.create(fakerStoreData);
-    await ProductModel.create(productsData);
+    // await ProductModel.create(productsData);
     // await RoleModel.create(productsData);
-    // await UserModel.create(usersData);
+    await UserModel.create(usersData);
 
     // const results = { booksData, fakerStoreData, productsData, rolesData, usersData };
-    const results = { productsData, };
-    console.log(results.productsData);
+    const results = { usersData, };
+    console.log(results.usersData);
     res.send('Data Imported into db...');
   } catch (err) {
     console.error(err);
@@ -50,8 +50,9 @@ dBaseSeed.get('/read-database', async (req, res) => {
     usersData = await UserModel.find();
 
     const results = { booksData, categoriesData, ordersData, fakerStoreData, productsData, rolesData, usersData };
-    console.log('Data read from database...', results.fakerStoreData);
-    res.json({ productsData });
+    console.log('Data read from database...', results.usersData);
+    // console.log('Data read from database...' );
+    res.json({ usersData });
 
   } catch (err) {
     console.error(err);
@@ -65,10 +66,10 @@ dBaseSeed.get('/delete-database', async (req, res) => {
     // await BookModel.deleteMany();
     // await CategoryModel.deleteMany();
     // await OrderModel.deleteMany();
-    await ProductModel.deleteMany();
+    // await ProductModel.deleteMany();
     // await ProductModel.deleteMany();
     // await RoleModel.deleteMany();
-    // await UserModel.deleteMany();
+    await UserModel.deleteMany();
 
     console.log('Data Destroyed...');
     res.json('Data Destroyed...');

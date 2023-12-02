@@ -29,7 +29,7 @@ var PaymentResultSchema = new mongoose.Schema({
   email_address: { type: String },
 });
 
-var OrderSchema = new mongoose.Schema({
+var cartSchema = new mongoose.Schema({
   items: [ItemSchema],
   shippingAddress: ShippingAddressSchema,
   user: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -45,5 +45,5 @@ var OrderSchema = new mongoose.Schema({
   deliveredAt: Date
 }, { timestamps: true });
 
-const OrderModel = mongoose.model('Order', OrderSchema);
-module.exports = OrderModel;
+const CartModel = mongoose.model('Order', cartSchema);
+module.exports = CartModel;

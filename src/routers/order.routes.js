@@ -1,140 +1,20 @@
 "use strict";
 
 const express = require('express');
-const asyncHandler = require('express-async-handler');
-const UserModel = require('../db/models/user.model');
 const { isAdmin, isAuth } = require('../services/auth');
-const OrderModel = require('../db/models/order.model');
-const ProductModel = require('../db/models/product.model');
+const orderContr = require('../controller/order.controller');
 
 const orderRoute = express.Router();
 
-orderRoute.get( '/', isAuth, isAdmin, asyncHandler(async (req, res) => {
-  const orders = await OrderModel.find().populate('user', 'name');
-  res.send(orders);
-})
-);
+orderRoute.get('/', isAuth, isAdmin, orderContr.getOrders);
+// orderRoute.get('/', orderContr.getOrders);
+orderRoute.get('/summary', orderContr.getSummary);
+orderRoute.get('/history', isAuth, orderContr.getHistory);
 
-orderRoute.get( '/summary', isAuth, isAdmin, asyncHandler(async (req, res) => {
-    const orders = await OrderModel.aggregate([{
-        $group: {
-          _id: null,
-          numOrders: { $sum: 1 },
-          totalSales: { $sum: '$totalPrice' },
-        },
-      },
-    ]);
-    const users = await UserModel.aggregate([{
-        $group: {
-          _id: null,
-          numUsers: { $sum: 1 },
-        },
-      },
-    ]);
-    const dailyOrders = await OrderModel.aggregate([{
-        $group: {
-          _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
-          orders: { $sum: 1 },
-          sales: { $sum: '$totalPrice' },
-        },
-      },
-      { $sort: { _id: 1 } },
-    ]);
-    const productCategories = await ProductModel.aggregate([{
-        $group: {
-          _id: '$category',
-          count: { $sum: 1 },
-        },
-      },
-    ]);
-    res.send({ users, orders, dailyOrders, productCategories });
-  })
-);
-
-orderRoute.get( '/history', isAuth, asyncHandler(async (req, res) => {
-    const orders = await OrderModel.find({ user: req.user._id });
-    res.send(orders);
-  })
-);
-
-orderRoute.post( '/', isAuth, asyncHandler(async (req, res) => {
-  console.log('req.body.items.length: ' + req.body.items.length);
-    if (req.body.items.length === 0) {
-      res.status(400).send({ message: 'Cart is empty' });
-    } else {
-      const createdOrder = await OrderModel.create({
-        items: req.body.items.map((x) => ({ ...x, product: x._id })),
-        shippingAddress: req.body.shippingAddress,
-        paymentMethod: req.body.paymentMethod,
-        itemsPrice: req.body.itemsPrice,
-        shippingPrice: req.body.shippingPrice,
-        taxPrice: req.body.taxPrice,
-        totalPrice: req.body.totalPrice,
-        user: req.user._id,
-      });
-      // console.log('createdOrder: ' + createdOrder);
-      res.status(201).send(createdOrder);
-    }
-  })
-);
-
-orderRoute.get( '/:id', isAuth, asyncHandler(async (req, res) => {
-    const order = await OrderModel.findById(req.params.id);
-    console.log('req.params.id: ' + req.params.id);
-    // console.log('order: ' + order);
-    if (order) {
-      res.send(order);
-    } else {
-      res.status(404).send({ message_id: 'Order Not Found' });
-    }
-  })
-);
-
-orderRoute.put( '/:id/pay', isAuth, asyncHandler(async (req, res) => {
-    const order = await OrderModel.findById(req.params.id).populate('user');
-
-    if (order) {
-      order.isPaid = true;
-      order.paidAt = new Date(Date.now());
-      order.paymentResult = {
-        paymentId: req.body.id,
-        status: req.body.status,
-        update_time: req.body.update_time,
-        email_address: req.body.email_address,
-      };
-      const updatedOrder = await order.save();
-
-      res.send(updatedOrder);
-    } else {
-      res.status(404).send({ message: 'Order Not Found' });
-    }
-  })
-);
-
-orderRoute.delete( '/:id', isAuth, isAdmin, asyncHandler(async (req, res) => {
-    const order = await OrderModel.findById(req.params.id);
-    if (order) {
-      const deleteOrder = await order.remove();
-      res.send({ message: 'Order Deleted', order: deleteOrder });
-    } else {
-      res.status(404).send({ message: 'Order Not Found' });
-    }
-  })
-);
-
-orderRoute.put( '/:id/deliver', isAuth, isAdmin, asyncHandler(async (req, res) => {
-    const order = await OrderModel.findById(req.params.id);
-    if (order) {
-      order.isDelivered = true;
-      order.deliveredAt = new Date(Date.now());
-      // order.deliveredAt = Date.now();
-
-      const updatedOrder = await order.save();
-      res.send({ message: 'Order Delivered', order: updatedOrder });
-    } else {
-      res.status(404).send({ message: 'Order Not Found' });
-    }
-  })
-);
+orderRoute.post('/', isAuth, orderContr.postOrder);
+orderRoute.get('/:id', isAuth, orderContr.getOrder);
+orderRoute.put('/:id/pay', isAuth, orderContr.payOrder);
+orderRoute.delete('/:id', isAuth, isAdmin, orderContr.deleteOrder);
+orderRoute.put('/:id/deliver', isAuth, isAdmin, orderContr.deliverOrder);
 
 module.exports = orderRoute;
