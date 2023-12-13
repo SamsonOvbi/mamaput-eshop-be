@@ -5,6 +5,7 @@ const productContr = {};
 
 productContr.getAllProducts = asyncHandler(async (req, res) => {
   const name = (req.query.name || '');
+  // const description = (req.query.description || '');
   const category = (req.query.category || '');
   const limit = Number(req.query.limit) || 0;
   // const sort = req.query.sort === 'desc' ? -1 : 1;
@@ -14,15 +15,16 @@ productContr.getAllProducts = asyncHandler(async (req, res) => {
   const rating = req.query.rating && Number(req.query.rating) !== 0 ? Number(req.query.rating) : 0;
 
   const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+  // const descriptionFilter = name ? { name: { $regex: description, $options: 'i' } } : {};
   const categoryFilter = category ? { category } : {};
   const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
   const ratingFilter = rating ? { rating: { $gte: rating } } : {};
 
-  const sortOrder = order === 'lowest' ? { price: 1 } : order === 'highest' ? { price: -1 } : order === 'toprated' ? { rating: -1 }
-    : order === 'a-z' ? { name: 1 } : order === 'z-a' ? { name: -1 } : { _id: -1 };
+  const sortOrder = order === 'lowest' ? { price: 1 } : order === 'highest' ? { price: -1 } : order === 'toprated'
+    ? { rating: -1 }: order === 'a-z' ? { name: 1 } : order === 'z-a' ? { name: -1 } : { _id: -1 };
 
   await ProductModel.find({
-    ...nameFilter, ...categoryFilter, ...priceFilter, ...ratingFilter
+    ...nameFilter, ...categoryFilter, ...priceFilter, ...ratingFilter,
   })
     // .select(['-_id']).limit(limit)
     .limit(limit)
@@ -49,8 +51,8 @@ productContr.getPagedProducts = asyncHandler(async (req, res) => {
   const categoryFilter = category ? { category } : {};
   const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
   const ratingFilter = rating ? { rating: { $gte: rating } } : {};
-  const sortOrder = order === 'lowest' ? { price: 1 } : order === 'highest'
-    ? { price: -1 } : order === 'toprated' ? { rating: -1 } : { _id: -1 };
+  const sortOrder = order === 'lowest' ? { price: 1 } : order === 'highest'? { price: -1 } : order === 'toprated'
+    ? { rating: -1 } : { _id: -1 };
   const count = await ProductModel.count({
     ...nameFilter, ...categoryFilter, ...priceFilter, ...ratingFilter,
   });
@@ -108,8 +110,10 @@ productContr.getProductsInCategory = asyncHandler(async (req, res) => {
 });
 
 productContr.addProduct = asyncHandler(async (req, res) => {
+  let productCount = await ProductModel.find().countDocuments();
   const product = await ProductModel.create({
-    id: (req.body.id || 21),
+    // id: (req.body.id || 21),
+    id: (req.body.id || productCount),
     name: (req.body.name || 'sample name ') + Date.now(),
     image: req.body.image || '../assets/images/p1.jpg',
     price: req.body.price || 0,
@@ -182,6 +186,10 @@ productContr.writeReview = asyncHandler(async (req, res) => {
   } else {
     res.status(404).send({ message: 'Product Not Found' });
   }
+});
+
+productContr.test = asyncHandler(async (req, res) => {
+  res.send({ message: 'Welcome to product api endpoint' });
 });
 
 module.exports = productContr;

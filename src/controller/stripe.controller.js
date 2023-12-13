@@ -1,13 +1,15 @@
 'use strict';
-const express = require("express");
-const stripeRoute = express.Router();
+// const express = require("express");
+// const stripeContr = express.Router();
+const asyncHandler = require('express-async-handler');
 // const stripe = require('stripe');
+const stripeContr = {};
 
 //Stripe Checkout Implementation
 const stripe = require('stripe')('sk_test_51MieJTExOuRzEOei54rp1sF0La9Cs9Dn51BjVpphdDgy8G6tocCmd0plEjtmUgcDGVUbbb3he588d3s6GDeEI4SQ00sCMXpNnO');
 
-// stripeRoute.post('/checkout', async (req, res, next) => {
-stripeRoute.checkout = async (req, res, next) => {
+// stripeContr.post('/checkout', async (req, res, next) => {
+stripeContr.checkout = async (req, res, next) => {
   try {
     const purchasedItems = req.body.items;
     const session = await stripe.checkout.sessions.create({
@@ -60,8 +62,8 @@ stripeRoute.checkout = async (req, res, next) => {
   }
 };
 
-stripeRoute.get =  (req, res) => {
+stripeContr.test = asyncHandler(async (req, res) => {
   res.status(200).json({ message1: 'Welcome to stripe/checkout server ' });
-};
+});
 
-module.exports = stripeRoute;
+module.exports = stripeContr;

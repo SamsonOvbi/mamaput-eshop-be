@@ -13,6 +13,7 @@ const userRoute = require('./routers/user.routes');
 const productRoute = require('./routers/product.routes');
 const orderRoute = require('./routers/order.routes');
 const paymentRoute = require('./routers/payment.routes');
+const cartRoute = require('./routers/cart.routes');
 // const log = require('console');
 
 const app = express();
@@ -35,6 +36,7 @@ app.use('/seeder', dBaseSeed);
 app.use('/api/uploads', uploadRoute);
 app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
+app.use('/api/carts', cartRoute);
 app.use('/api/orders', orderRoute);
 app.use('/api/payment', paymentRoute);
 

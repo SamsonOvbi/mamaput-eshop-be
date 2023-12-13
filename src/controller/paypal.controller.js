@@ -13,8 +13,8 @@ paypalContr.checkout = asyncHandler(async (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID || 'sb' });
 });
 
-paypalContr.get = asyncHandler(async (req, res) => {
-  res.send({message: 'Welcome to paypal gateway'});
+paypalContr.test = asyncHandler(async (req, res) => {
+  res.send({ message: 'Welcome to paypal api endpoint' });
 });
 
 module.exports = paypalContr;

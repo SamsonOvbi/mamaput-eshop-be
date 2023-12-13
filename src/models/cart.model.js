@@ -45,5 +45,5 @@ var cartSchema = new mongoose.Schema({
   deliveredAt: Date
 }, { timestamps: true });
 
-const CartModel = mongoose.model('Order', cartSchema);
+const CartModel = mongoose.model('Cart', cartSchema);
 module.exports = CartModel;

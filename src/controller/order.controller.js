@@ -11,7 +11,7 @@ const orderContr = {};
 
 orderContr.getOrders = asyncHandler(async (req, res) => {
   // const orders = await OrderModel.find().populate('user', 'name');
-  const orders = await OrderModel.find().skip(1).limit(1);
+  const orders = await OrderModel.find();
   res.send(orders);
 });
 
@@ -55,7 +55,7 @@ orderContr.getHistory = asyncHandler(async (req, res) => {
   res.send(orders);
 });
 
-orderContr.postOrder = asyncHandler(async (req, res) => {
+orderContr.addOrder = asyncHandler(async (req, res) => {
   console.log('req.body.items.length: ' + req.body.items.length);
   if (req.body.items.length === 0) {
     res.status(400).send({ message: 'Cart is empty' });
@@ -128,6 +128,10 @@ orderContr.deliverOrder = asyncHandler(async (req, res) => {
   } else {
     res.status(404).send({ message: 'Order Not Found' });
   }
+});
+
+orderContr.test = asyncHandler(async (req, res) => {
+  res.send({ message: 'Welcome to order api endpoint' });
 });
 
 module.exports = orderContr;

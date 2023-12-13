@@ -25,13 +25,14 @@ userContr.getUser = asyncHandler(async (req, res) => {
   }
 });
 
-userContr.addUser = asyncHandler(async (req, res) => {
+userContr.registerUser = asyncHandler(async (req, res) => {
   const body = req.body;
   if (!body) {
     res.status(401).send({ status: 'error', message: 'data is undefined', });
   } else {
     let userCount = 0;
-    UserModel.find().countDocuments((err, count) => { userCount = count; })
+    // UserModel.find().countDocuments((err, count) => { userCount = count; })
+    userCount = await UserModel.find().countDocuments();
     const reqBody = {
       id: userCount + 1, email: body.email, username: body.username,
       password: bcrypt.hashSync(req.body.password),
@@ -52,7 +53,7 @@ userContr.addUser = asyncHandler(async (req, res) => {
       phone: body.phone,
     };
     const user = await UserModel.create({ reqBody });
-    const { password, ...rest } = user;
+    const { password, ...rest } = user._doc;
     let pass = pass || password;
     const resBody = {
       rest, isAdmin: user.isAdmin, token: generateToken(user),
@@ -67,6 +68,9 @@ userContr.login = asyncHandler(async (req, res) => {
   if (user) {
     if (bcrypt.compareSync(req.body.password, user.password)) {
       // return res.send({
+      //   _id: user._id, username: user.username, email: user.email,
+      //   isAdmin: user.isAdmin, token: generateToken(user),
+      // });
       const resBody = {
         _id: user._id, username: user.username, email: user.email,
         isAdmin: user.isAdmin, token: generateToken(user),

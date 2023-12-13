@@ -10,7 +10,7 @@ const userRoute = express.Router();
 
 userRoute.get( '/', isAuth, isAdmin, userContr.getAllUsers);
 userRoute.get( '/:id', userContr.getUser);
-userRoute.post( '/register', userContr.addUser);
+userRoute.post( '/register', userContr.registerUser);
 userRoute.post( '/login', userContr.login);
 
 userRoute.put( '/update-profile', isAuth, userContr.updateProfile);

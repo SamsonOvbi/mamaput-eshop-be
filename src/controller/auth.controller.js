@@ -4,8 +4,8 @@ const UserModel = require('../src/db/models/user.model');
 const bcrypt = require('bcryptjs');
 const { generateToken } = require('../src/services/auth');
 
-const userContr = {};
-// userContr.login = (req, res) => {
+const authContr = {};
+// authContr.login = (req, res) => {
 // 	const username = req.body.username;
 // 	const password = req.body.password;
 // 	if (username && password) {
@@ -26,8 +26,8 @@ const userContr = {};
 // 	}
 // };
 
-// userContr.post( '/login', expressAsyncHandler(async (req, res) => {
-  userContr.login = expressAsyncHandler(async (req, res) => {
+// authContr.post( '/login', expressAsyncHandler(async (req, res) => {
+  authContr.login = expressAsyncHandler(async (req, res) => {
   const user = await UserModel.findOne({ email: req.body.email });
   if (user) {
     if (bcrypt.compareSync(req.body.password, user.password)) {
@@ -42,4 +42,4 @@ const userContr = {};
   }
 });
 
-module.exports = userContr;
+module.exports = authContr;

@@ -10,9 +10,11 @@ orderRoute.get('/', isAuth, isAdmin, orderContr.getOrders);
 // orderRoute.get('/', orderContr.getOrders);
 orderRoute.get('/summary', orderContr.getSummary);
 orderRoute.get('/history', isAuth, orderContr.getHistory);
+orderRoute.get('/test', orderContr.test);
 
-orderRoute.post('/', isAuth, orderContr.postOrder);
+orderRoute.post('/', isAuth, orderContr.addOrder);
 orderRoute.get('/:id', isAuth, orderContr.getOrder);
+
 orderRoute.put('/:id/pay', isAuth, orderContr.payOrder);
 orderRoute.delete('/:id', isAuth, isAdmin, orderContr.deleteOrder);
 orderRoute.put('/:id/deliver', isAuth, isAdmin, orderContr.deliverOrder);

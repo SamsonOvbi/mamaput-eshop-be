@@ -6,25 +6,18 @@ dotenv.config();
 const jwt = require('jsonwebtoken');
 // const User = require('./db/models/user.model');
 
+const jwtSecret = process.env.JWT_SECRET || 'somethingsecret';
 const generateToken = (user) => {
-  return jwt.sign({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-    },
-    process.env.JWT_SECRET || 'somethingsecret', {
-      expiresIn: '30d',
-    }
-  );
+  const payLoad = {_id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin,};
+  const signOptions = {expiresIn: '30d',};
+  return jwt.sign(payLoad, jwtSecret, signOptions);
 };
 
 const isAuth = (req, res, next) => {
   const authorization = req.headers.authorization;
   if (authorization) {
-    // const token = authorization.slice(7, authorization.length); // Bearer XXXXXX
     const token = authorization.split(' ')[1]; // Bearer XXXXXX
-    const decode = jwt.verify( token, process.env.JWT_SECRET || 'somethingsecret' );
+    const decode = jwt.verify( token, jwtSecret );
     req.user = decode;
     // console.log(`req.user: `); console.log(req.user);
     next();

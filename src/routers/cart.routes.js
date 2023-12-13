@@ -1,16 +1,16 @@
 const express = require('express')
 const cartRoute = express.Router()
 const cartContr = require('../controller/cart.controller')
+const { isAuth } = require('../services/auth')
 
-cartRoute.get('/', cartContr.getAllCarts)
-cartRoute.get('/:id', cartContr.getSingleCart)
-cartRoute.get('/user/:userid', cartContr.getCartsByUserid)
+cartRoute.get('/', isAuth, cartContr.getAllCarts)
+cartRoute.get('/:id', isAuth, cartContr.getSingleCart)
+cartRoute.get('/user/:userid', isAuth, cartContr.getCartsByUserid)
+cartRoute.get('/test', cartContr.test);
+cartRoute.post('/', isAuth, cartContr.addCart)
 
-cartRoute.post('/', cartContr.addCart)
-// cartRoute.post('/:id', cartContr.addToCart)
-
-cartRoute.put('/:id', cartContr.editCart)
-cartRoute.patch('/:id', cartContr.editCart)
-cartRoute.delete('/:id', cartContr.deleteCart)
+cartRoute.put('/:id', isAuth, cartContr.editCart)
+cartRoute.patch('/:id', isAuth, cartContr.editCart)
+cartRoute.delete('/:id', isAuth, cartContr.deleteCart)
 
 module.exports = cartRoute
