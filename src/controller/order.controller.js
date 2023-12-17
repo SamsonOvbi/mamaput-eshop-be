@@ -56,7 +56,7 @@ orderContr.getHistory = asyncHandler(async (req, res) => {
 });
 
 orderContr.addOrder = asyncHandler(async (req, res) => {
-  console.log('req.body.items.length: ' + req.body.items.length);
+  // console.log('req.body.items.length: ' + req.body.items.length);
   if (req.body.items.length === 0) {
     res.status(400).send({ message: 'Cart is empty' });
   } else {

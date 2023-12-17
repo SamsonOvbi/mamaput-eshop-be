@@ -1,9 +1,9 @@
 const express = require('express')
 const cartRoute = express.Router()
 const cartContr = require('../controller/cart.controller')
-const { isAuth } = require('../services/auth')
+const { isAuth, isAdmin } = require('../services/auth')
 
-cartRoute.get('/', isAuth, cartContr.getAllCarts)
+cartRoute.get('/', isAuth, isAdmin, cartContr.getAllCarts)
 cartRoute.get('/:id', isAuth, cartContr.getSingleCart)
 cartRoute.get('/user/:userid', isAuth, cartContr.getCartsByUserid)
 cartRoute.get('/test', cartContr.test);

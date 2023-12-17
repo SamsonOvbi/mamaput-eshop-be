@@ -8,7 +8,7 @@ const orderRoute = express.Router();
 
 orderRoute.get('/', isAuth, isAdmin, orderContr.getOrders);
 // orderRoute.get('/', orderContr.getOrders);
-orderRoute.get('/summary', orderContr.getSummary);
+orderRoute.get('/summary', isAuth, orderContr.getSummary);
 orderRoute.get('/history', isAuth, orderContr.getHistory);
 orderRoute.get('/test', orderContr.test);
 

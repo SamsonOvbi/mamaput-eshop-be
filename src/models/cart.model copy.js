@@ -7,18 +7,18 @@ const Schema = mongoose.Schema;
 
 
 //Creating a Order Schema
-const OrderSchema = new Schema({
+const CartSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'User'},
   totalPrice: { type: Number, default: 0},
   products: [{
     product: { type: Schema.Types.ObjectId, ref: 'Product'},
     quantity: { type: Number, default: 1 }
   }]
-});
+}, { timestamps: true });
 
 
 //Using deep-populate to facilitate rating feature
-OrderSchema.plugin(deepPopulate);
+CartSchema.plugin(deepPopulate);
 
 //Exporting the Order schema to reuse
-module.exports = mongoose.model('Order', OrderSchema);
+module.exports = mongoose.model('Cart', CartSchema);
