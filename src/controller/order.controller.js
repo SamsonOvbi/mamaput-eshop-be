@@ -10,8 +10,11 @@ const ProductModel = require('../models/product.model');
 const orderContr = {};
 
 orderContr.getOrders = asyncHandler(async (req, res) => {
+  const limit = Number(req.query.limit) || 0;
+  const sort = req.query.sort == 'desc' ? -1 : 1;
   // const orders = await OrderModel.find().populate('user', 'name');
-  const orders = await OrderModel.find();
+  const orders = await OrderModel.find()
+    .limit(limit).sort({ id: sort });
   res.send(orders);
 });
 
@@ -56,7 +59,6 @@ orderContr.getHistory = asyncHandler(async (req, res) => {
 });
 
 orderContr.addOrder = asyncHandler(async (req, res) => {
-  // console.log('req.body.items.length: ' + req.body.items.length);
   if (req.body.items.length === 0) {
     res.status(400).send({ message: 'Cart is empty' });
   } else {
@@ -77,7 +79,7 @@ orderContr.addOrder = asyncHandler(async (req, res) => {
 
 orderContr.getOrder = asyncHandler(async (req, res) => {
   const order = await OrderModel.findById(req.params.id);
-  console.log('req.params.id: ' + req.params.id);
+  // console.log('req.params.id: ' + req.params.id);
   // console.log('order: ' + order);
   if (order) {
     res.send(order);

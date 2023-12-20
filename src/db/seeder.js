@@ -73,6 +73,6 @@ dBaseSeed.post('/delete-database', async (req, res) => {
   }
 });
 
-dBaseSeed.get('/', (req, res) => res.send('Welcome to seeder endpoint'));
+dBaseSeed.get('/test', (req, res) => res.send('Welcome to seeder endpoint'));
 
 module.exports = dBaseSeed;

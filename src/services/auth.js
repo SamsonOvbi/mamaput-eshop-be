@@ -6,7 +6,7 @@ dotenv.config();
 const jwt = require('jsonwebtoken');
 // const User = require('./db/models/user.model');
 
-const jwtSecret = process.env.JWT_SECRET || 'somethingsecret';
+const jwtSecret = process.env.JWT_SECRET;
 const generateToken = (user) => {
   const payLoad = {_id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin,};
   const signOptions = {expiresIn: '30d',};

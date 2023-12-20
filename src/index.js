@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 
 connectDB();
 
-app.use('/seeder', dBaseSeed);
+app.use('/api/seeder', dBaseSeed);
 app.use('/api/uploads', uploadRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/users', userRoute);
