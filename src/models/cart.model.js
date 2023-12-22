@@ -32,7 +32,8 @@ var PaymentResultSchema = new mongoose.Schema({
 var cartSchema = new mongoose.Schema({
   items: [ItemSchema],
   shippingAddress: ShippingAddressSchema,
-  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  // user: { type: Schema.Types.ObjectId, ref: 'User' },
+  userId: { type: String, required: true },
   paymentMethod: { type: String, required: true },
   itemsCount: { type: Number, required: true, default: 1 },
   // paymentResult: PaymentResultSchema,

@@ -3,12 +3,13 @@
 const dotenv =  require('dotenv');
 dotenv.config();
 const express = require('express');
-const { isAdmin, isAuth } = require('../services/auth');
-const userContr = require('../controller/user.controller');
+const { isAuth } = require('../services/auth');
+const authContr = require('../controller/auth.controller');
 
 const authRoute = express.Router();
 
-authRoute.post( '/register', userContr.registerUser);
-authRoute.post( '/login', userContr.login);
+authRoute.post( '/register', authContr.registerUser);
+authRoute.post( '/login', authContr.login);
+authRoute.put( '/update-profile', isAuth, authContr.updateProfile);
 
 module.exports = authRoute;

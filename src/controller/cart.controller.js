@@ -1,33 +1,23 @@
 const asyncHandler = require('express-async-handler');
 const CartModel = require("../models/cart.model");
+const OrderModel = require('../models/order.model');
 
 const cartContr = {};
 cartContr.getAllCarts = asyncHandler(async (req, res) => {
-  const cartCount = await CartModel.find().countDocuments();
+  let cartCount = await CartModel.find().countDocuments();
   const carts = await CartModel.find();
   if (carts) {
     console.log(`${cartCount} Carts in database`);
     res.send(carts);
   } else {
-    const reqBody = {
-      id: cartCount + 1,
-      items: [],
-      shippingAddress: {
-        fullName: '', address: '', city: '', country: '',
-        postalCode: '', lat: 0, lng: 0,
-      },
-      userId: '', paymentMethod: '', itemsCount: 0,
-      itemsPrice: 0, taxPrice: 0, shippingPrice: 0, totalPrice: 0,
-    }
-    const defaultCart = await CartModel.create(reqBody)
-    res.send(defaultCart);
-    // res.status(404).send({ message: 'No Carts in database' });
+    res.status(404).send({ message: 'No Carts in database' });
   }
 });
 
-cartContr.getCartsByUserid = asyncHandler(async (req, res) => {
-  const userId = req.params.userid;
-  const cart = await CartModel.find({ userId });
+cartContr.getUserCart = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  console.log('userId: '); console.log(req.user._id);
+  const cart = await CartModel.findOne({ userId });
   if (cart) {
     res.send(cart);
   } else {
@@ -40,63 +30,77 @@ cartContr.test = asyncHandler(async (req, res) => {
 });
 
 cartContr.createCart = asyncHandler(async (req, res) => {
-  let cartCount = await CartModel.find().countDocuments();
-  // console.log('cartCount: '); console.log(cartCount);
+  const body = req.body;
   const reqBody = {
-    id: cartCount + 1,
-    items: req.body.items.map((x) => ({ ...x, product: x._id })),
-    shippingAddress: req.body.shippingAddress,
-    userId: req.user._id,
-    paymentMethod: req.body.paymentMethod,
-    itemsCount: req.body.itemsCount,
-    itemsPrice: req.body.itemsPrice,
-    taxPrice: req.body.taxPrice,
-    shippingPrice: req.body.shippingPrice,
-    totalPrice: req.body.totalPrice,
+    items: body.items,
+    shippingAddress: body.shippingAddress,
+    userId: body.userId,
+    paymentMethod: body.paymentMethod,
+    itemsCount: body.itemsCount,
+    itemsPrice: body.itemsPrice,
+    taxPrice: body.taxPrice,
+    shippingPrice: body.shippingPrice,
+    totalPrice: body.totalPrice,
   }
-  console.log('reqBody: '); console.log(reqBody);
-  const addedCart = await CartModel.create(reqBody)
-  console.log('addedCart: '); console.log(addedCart);
-  res.send(addedCart);
+  const createdCart = await CartModel.create(reqBody)
+  console.log('createdCart: '); console.log(createdCart);
+  res.send(createdCart);
 });
 
 cartContr.editCart = asyncHandler(async (req, res) => {
-  const body = req.body;
-  console.log('body: '); console.log(body);
-  const itemId = req.user._id;
-  // console.log('itemId: '); console.log(itemId);
-  const cart = await CartModel.findOne({ itemId });
-
-  if (cart) {
-    console.log('cart: '); console.log(cart);
-    // cart.items = req.body.items.map((x) => ({ ...x, }));
-    // console.log('req.body.items: '); console.log(req.body.items);
-    // cart.shippingAddress = req.body.shippingAddress;
-    // console.log('cart: '); console.log(cart);
-    // cart.user.id = req.user._id;
-    // cart.paymentMethod = req.body.paymentMethod;
-    // cart.itemsCount = req.body.itemsCount;
-    // cart.itemsPrice = req.body.itemsPrice;
-    // cart.taxPrice = req.body.taxPrice;
-    // cart.shippingPrice = req.body.shippingPrice;
-    // cart.totalPrice = req.body.totalPrice;
-    console.log('cart: '); console.log(cart);
-
-    const updatedUser = await cart.save();
-    console.log('updatedUser: '); console.log(updatedUser);
-    // res.send({ message: 'Cart Updated', item: updatedUser });
-    res.send(updatedUser);
+  const userId = req.body.userId;
+  const cart = await CartModel.findOne({ userId });
+  if (cart.paymentMethod !== '') {
+    // console.log('req.body: '); console.log(req.body);
+    cart.items = req.body.items;
+    cart.shippingAddress = req.body.shippingAddress;
+    cart.userId = req.body.userId;
+    cart.paymentMethod = req.body.paymentMethod;
+    cart.itemsCount = req.body.itemsCount;
+    cart.itemsPrice = req.body.itemsPrice;
+    cart.taxPrice = req.body.taxPrice;
+    cart.shippingPrice = req.body.shippingPrice;
+    cart.totalPrice = req.body.totalPrice;
+    await cart.save()
+      .then((updatedUser) => {
+        console.log('updatedUser: '); console.log(updatedUser);
+        res.send(updatedUser)
+      })
+      .catch(err => res.status(500).send({ message: err.message }));
   } else {
-    res.status(404).send({ message: 'Cart Not Found' });
+    console.log('initialized cart: '); console.log(cart);
+    let reqBody;
+    const order = await CartModel.findOne({ userId });
+    const body = req.body;
+    reqBody = {
+      items: body.items,
+      shippingAddress: body.shippingAddress,
+      userId: body.userId,
+      paymentMethod: body.paymentMethod,
+      itemsCount: body.itemsCount,
+      itemsPrice: body.itemsPrice,
+      taxPrice: body.taxPrice,
+      shippingPrice: body.shippingPrice,
+      totalPrice: body.totalPrice,
+    }
+    if (order.paymentMethod !== '') {
+      reqBody.shippingAddress = order.shippingAddress;
+      reqBody.paymentMethod = order.paymentMethod;
+    }
+    const createdCart2 = await CartModel.create(reqBody)
+    console.log('initialCart: '); console.log(createdCart2);
+    res.send(createdCart2);
+    // res.status(404).send({ message: 'Cart Not Found' });
   }
 });
 
 cartContr.deleteCart = asyncHandler(async (req, res) => {
-  const cart = await CartModel.findById(req.params.id);
+  const userId = req.user._id;
+  const cart = await CartModel.findOne({ userId });
   if (cart) {
     const deletedCart = await cart.remove();
     console.log('deletedCart: '); console.log(deletedCart);
-    res.send({ message: 'Cart Deleted', cart: deletedCart });
+    res.send(deletedCart);
   } else {
     res.status(404).send({ message: 'Cart Not Found' });
   }

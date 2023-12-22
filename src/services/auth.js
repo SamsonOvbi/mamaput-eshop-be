@@ -19,7 +19,7 @@ const isAuth = (req, res, next) => {
     const token = authorization.split(' ')[1]; // Bearer XXXXXX
     const decode = jwt.verify( token, jwtSecret );
     req.user = decode;
-    // console.log(`req.user: `); console.log(req.user);
+    // console.log(`isAuth req.user: `); console.log(req.user);
     next();
   } else {
     res.status(401).send({ message: 'No Token' });

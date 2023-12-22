@@ -38,7 +38,7 @@ productContr.getAllProducts = asyncHandler(async (req, res) => {
 
 
 productContr.getPagedProducts = asyncHandler(async (req, res) => {
-  const pageSize = Number(req.query.pageSize) || 3;
+  const pageSize = Number(req.query.pageSize) || 5;
   const page = Number(req.query.pageNumber) || 1;
   const name = (req.query.name || '');
   const category = (req.query.category || '');

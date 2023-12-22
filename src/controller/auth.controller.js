@@ -1,8 +1,8 @@
 // const jwt = require('jsonwebtoken');
-const expressAsyncHandler = require('express-async-handler');
-const UserModel = require('../src/db/models/user.model');
+const asyncHandler = require('express-async-handler');
+const UserModel = require('../models/user.model');
 const bcrypt = require('bcryptjs');
-const { generateToken } = require('../src/services/auth');
+const { generateToken } = require('../services/auth');
 
 const authContr = {}
 
@@ -63,7 +63,7 @@ authContr.login = asyncHandler(async (req, res) => {
   }
 });
 
-userContr.updateProfile = asyncHandler(async (req, res) => {
+authContr.updateProfile = asyncHandler(async (req, res) => {
   // if (typeof req.body == undefined || req.params.id == null) {
   const body = req.body;
   if (!body || req.params.id == null) {

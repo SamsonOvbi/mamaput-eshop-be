@@ -1,0 +1,149 @@
+[
+  {
+
+    "items": [
+      {
+        "image": "http://localhost:3000/img/61pHAEJ4NML._AC_UX679_.jpg",
+        "name": "DANVOUY Womens T Shirt Casual Cotton Short",
+        "slug": "danvouy-womens-t-shirt-casual-cotton-short",
+        "price": 12.99,
+        "quantity": 2,
+        "_id": "6567765e0456a9ec836f2c20"
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Janet Zeta Jones",
+      "address": "House No. 1, Dega Village, Sagamu Express Road",
+      "city": "Abeokuta",
+      "country": "Nigeria",
+      "postalCode": "112102",
+      "lat": 0,
+      "lng": 0,
+      "_id": "65830ecbc4f062f009c60869"
+    },
+    "userId": "6569c7c6ba7b8bd5c42eabbd",
+    "paymentMethod": "paypal",
+    "itemsCount": 1,
+    "itemsPrice": 12.99,
+    "taxPrice": 1.95,
+    "shippingPrice": 20,
+    "totalPrice": 34.94,
+    "createdAt": "2023-12-22T08:55:04.867Z",
+    "updatedAt": "2023-12-22T08:55:04.867Z",
+    "__v": 0
+  },
+  {
+
+    "items": [
+      {
+        "_id": "6526b569039a08b6eb8c64e5",
+        "image": "../assets/images/p4.jpg",
+        "name": "Nike Slim Pant",
+        "slug": "nike-slim-pant",
+        "price": 78,
+        "quantity": 1,
+        "product": "6526b569039a08b6eb8c64e5"
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Janet Zeta Jones",
+      "address": "House No. 1, Dega Village",
+      "city": "Abeokuta",
+      "postalCode": "112102",
+      "country": "Nigeria",
+      "lat": 0,
+      "lng": 0,
+      "_id": "6526cd807f1fe1895a16f2fd"
+    },
+    "userId": "6526b568039a08b6eb8c64df",
+    "paymentMethod": "paypal",
+    "itemsPrice": 78,
+    "shippingPrice": 20,
+    "taxPrice": 11.7,
+    "totalPrice": 109.7,
+    "isPaid": false,
+    "isDelivered": false,
+    "createdAt": "2023-10-11T16:29:52.783Z",
+    "updatedAt": "2023-10-11T16:29:52.783Z",
+    "__v": 0
+  },
+  {
+
+    "items": [
+      {
+        "name": "Adidas Fit Shirt",
+        "slug": "adidas-fit-shirt",
+        "quantity": 2,
+        "image": "../assets/images/p2.jpg",
+        "price": 100,
+        "product": "6526b569039a08b6eb8c64e3",
+        "_id": "6526b569039a08b6eb8c64e3"
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Samson Rerri",
+      "address": "House No. 1, Dega Village",
+      "city": "Abeokuta",
+      "postalCode": "112102",
+      "country": "Nigeria",
+      "lat": 0,
+      "lng": 0,
+      "_id": "652ded546fb138f5f797bfa3"
+    },
+    "userId": "6526b568039a08b6eb8c64e0",
+    "paymentMethod": "paypal",
+    "itemsPrice": 200,
+    "shippingPrice": 20,
+    "taxPrice": 30,
+    "totalPrice": 250,
+    "isPaid": false,
+    "isDelivered": false,
+    "createdAt": "2023-10-17T02:11:32.402Z",
+    "updatedAt": "2023-10-17T02:11:32.402Z",
+    "__v": 0
+  },
+  {
+
+    "items": [
+      {
+        "name": "Adidas Fit Pant",
+        "slug": "adidas-fit-pant",
+        "quantity": 2,
+        "image": "../assets/images/p6.jpg",
+        "price": 139,
+        "product": "6526b569039a08b6eb8c64e7",
+        "_id": "6526b569039a08b6eb8c64e7"
+      },
+      {
+        "name": "Puma Slim Pant",
+        "slug": "puma-slim-pant",
+        "quantity": 2,
+        "image": "../assets/images/p5.jpg",
+        "price": 65,
+        "product": "6526b569039a08b6eb8c64e6",
+        "_id": "6526b569039a08b6eb8c64e6"
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Samson Rerri",
+      "address": "House No. 1, Dega Village",
+      "city": "Abeokuta",
+      "postalCode": "112102",
+      "country": "Nigeria",
+      "lat": 0,
+      "lng": 0,
+      "_id": "652e40ca2aaad0951b8155b2"
+    },
+    "userId": "6526b568039a08b6eb8c64e0",
+    "paymentMethod": "paypal",
+    "itemsPrice": 408,
+    "shippingPrice": 0,
+    "taxPrice": 61.2,
+    "totalPrice": 469.2,
+    "isPaid": false,
+    "isDelivered": false,
+    "createdAt": "2023-10-17T08:07:38.528Z",
+    "updatedAt": "2023-10-17T08:07:38.528Z",
+    "__v": 0
+  }
+]
