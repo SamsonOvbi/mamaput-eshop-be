@@ -1,7 +1,7 @@
 "use strict";
 
 const express = require('express');
-const { isAdmin, isAuth } = require('../services/auth');
+const { isAdmin, isAuth } = require('../services/auth.service');
 const productContr = require('../controller/product.controller');
 
 const productRoute = express.Router();

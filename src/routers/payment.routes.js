@@ -5,7 +5,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const paypalContr = require('../controller/paypal.controller');
 const stripeContr = require('../controller/stripe.controller');
-const { isAuth } = require('../services/auth');
+const { isAuth } = require('../services/auth.service');
 
 dotenv.config();
 // const ProductModel = require('../db/models/product.model');

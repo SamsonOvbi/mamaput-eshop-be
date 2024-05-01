@@ -1,155 +1,52 @@
 const asyncHandler = require("express-async-handler");
-const bcrypt = require('bcryptjs');
-const { generateToken, } = require('../services/auth');
+// const bcrypt = require('bcryptjs');
+const { generateToken, } = require('../services/auth.service');
 const UserModel = require("../models/user.model");
 
 const userContr = {}
 
 userContr.getAllUsers = asyncHandler(async (req, res) => {
-  // const limit = Number(req.query.limit) || 20;
-  // const sort = req.query.sort == 'desc' ? -1 : 1;
-  // const users = await UserModel.find().select(['-_id']).limit(limit).sort({ id: sort, })
-
   const users = await UserModel.find({});
+  // console.log('editUser users: '); console.log(users);
   res.send(users);
 });
 
 userContr.getUser = asyncHandler(async (req, res) => {
-  const id = req.params.id;
-
-  const user = await UserModel.findOne({ id, }).select(['-_id'])
+  const user = await UserModel.findById(req.params.id);
   if (user) {
-    res.send(user);
+    const { password, ...rest } = user._doc;
+    console.log('getUser password: '); console.log(password);
+    res.send(rest);
   } else {
     res.status(404).send({ message: 'User Not Found' });
   }
 });
 
-// userContr.registerUser = asyncHandler(async (req, res) => {
-//   const body = req.body;
-//   if (!body) {
-//     res.status(401).send({ status: 'error', message: 'data is undefined', });
-//   } else {
-//     let userCount = 0;
-//     // UserModel.find().countDocuments((err, count) => { userCount = count; })
-//     userCount = await UserModel.find().countDocuments();
-//     const reqBody = {
-//       id: userCount + 1, email: body.email, username: body.username,
-//       password: bcrypt.hashSync(req.body.password),
-//       names: {
-//         firstname: body.firstname,
-//         lastname: body.lastname,
-//       },
-//       address: {
-//         city: body.address.city,
-//         street: body.address.street,
-//         number: body.number,
-//         zipcode: body.zipcode,
-//         geolocation: {
-//           lat: body.address.geolocation.lat,
-//           long: body.address.geolocation.long,
-//         },
-//       },
-//       phone: body.phone,
-//     };
-//     const user = await UserModel.create({ reqBody });
-//     const { password, ...rest } = user._doc;
-//     let pass = pass || password;
-//     const resBody = {
-//       rest, isAdmin: user.isAdmin, token: generateToken(user),
-//     };
-//     res.send(resBody);
-
-//     //res.json({id:UserModel.find().count()+1,...req.body})
-//   }
-// });
-// userContr.login = asyncHandler(async (req, res) => {
-//   const user = await UserModel.findOne({ email: req.body.email });
-//   if (user) {
-//     if (bcrypt.compareSync(req.body.password, user.password)) {
-//       // return res.send({
-//       //   _id: user._id, username: user.username, email: user.email,
-//       //   isAdmin: user.isAdmin, token: generateToken(user),
-//       // });
-//       const resBody = {
-//         _id: user._id, username: user.username, email: user.email,
-//         isAdmin: user.isAdmin, token: generateToken(user),
-//       };
-//       res.send(resBody);
-//     }
-//   } else {
-//     res.status(401).send({ message: 'Invalid email or password' });
-//   }
-// });
-
-// userContr.updateProfile = asyncHandler(async (req, res) => {
-//   // if (typeof req.body == undefined || req.params.id == null) {
-//   const body = req.body;
-//   if (!body || req.params.id == null) {
-//     res.send({
-//       status: 'error',
-//       message: 'something went wrong! check your sent data',
-//     });
-//   } else {
-//     // res.json({
-//     const user = await UserModel.findById(req.params.id);
-//     if (user) {
-//       user.email = body.email;
-//       user.username = body.username;
-//       user.names = {
-//         firstname: body.firstname,
-//         lastname: body.lastname,
-//       };
-//       user.address = {
-//         city: body.address.city,
-//         street: body.address.street,
-//         number: body.number,
-//         zipcode: body.zipcode,
-//         geolocation: {
-//           lat: body.address.geolocation.lat,
-//           long: body.address.geolocation.long,
-//         },
-//       };
-//       user.phone = body.phone;
-//       const updatedUser = await user.save();
-//       const { password, ...rest } = updatedUser;
-//       let pass = pass || password;
-//       const resBody = {
-//         rest, isAdmin: user.isAdmin, token: generateToken(user),
-//       };
-//       res.send({ message: 'User Updated', user: resBody });
-//     } else {
-//       res.status(404).send({ message: 'User Not Found' });
-//     }
-//   }
-// });
-
 userContr.editUser = asyncHandler(async (req, res) => {
   // if (typeof req.body == undefined || req.params.id == null) {
   const body = req.body;
+  // console.log('editUser req.params.id: '); console.log(req.params.id);
   if (!body || req.params.id == null) {
     res.send({
       status: 'error',
       message: 'something went wrong! check your sent data',
     });
   } else {
+    const tmpName = body.username.split(' ');
     // res.json({
     const user = await UserModel.findById(req.params.id);
     if (user) {
-      user.email = body.email;
-      // user.username = body.username;
-      user.username = body.username;
-      // user.names = {
-      //   firstname: body.firstname,
-      //   lastname: body.lastname,
-      // };
-      const updatedUser = await user.save();
-      const { password, ...rest } = updatedUser;
-      let pass = pass || password;
-      const resBody = {
-        rest, isAdmin: user.isAdmin, token: generateToken(user),
+      user.email = body.email || user.email;
+      user.username = body.username || user.username;
+      user.isAdmin = Boolean(req.body.isAdmin);
+      user.names = {
+        firstname: tmpName[0], // firstname: body.firstname,
+        lastname: tmpName[tmpName.length - 1],// lastname: b
       };
-      res.send({ message: 'User Updated', user: resBody });
+      const updatedUser = await user.save();
+      const { password, ...rest } = updatedUser._doc;
+      console.log('editUser password: '); console.log(password);
+      res.send({ message: 'User Updated', rest, token: generateToken(user), });
     } else {
       res.status(404).send({ message: 'User Not Found' });
     }
@@ -163,11 +60,15 @@ userContr.deleteUser = asyncHandler(async (req, res) => {
       res.status(400).send({ message: 'Can Not Delete Admin User' });
       return;
     }
-    const deleteUser = await user.remove();
-    res.send({ message: 'User Deleted', user: deleteUser });
+    const deletedUser = await user.remove();
+    res.send({ message: 'User Deleted', user: deletedUser });
   } else {
     res.status(404).send({ message: 'User Not Found' });
   }
+});
+
+userContr.testApi = asyncHandler(async (req, res) => {
+  res.send({ message: 'Welcome to user api endpoint' });
 });
 
 module.exports = userContr;

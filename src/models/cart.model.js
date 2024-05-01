@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+// var Schema = mongoose.Schema;
 
 var ItemSchema = new mongoose.Schema({
   id: { type: String },
@@ -22,12 +22,12 @@ var ShippingAddressSchema = new mongoose.Schema({
   lng: Number,
 });
 
-var PaymentResultSchema = new mongoose.Schema({
-  paymentId: { type: String },
-  status: { type: String },
-  update_time: { type: String },
-  email_address: { type: String },
-});
+// var PaymentResultSchema = new mongoose.Schema({
+//   paymentId: { type: String },
+//   status: { type: String },
+//   update_time: { type: String },
+//   email_address: { type: String },
+// });
 
 var cartSchema = new mongoose.Schema({
   items: [ItemSchema],

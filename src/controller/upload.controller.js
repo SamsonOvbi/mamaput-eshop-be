@@ -1,59 +1,69 @@
 "use strict";
 
-const dotenv =  require('dotenv');
+
+const dotenv = require('dotenv');
 dotenv.config();
 
-const multer = require('multer');
-const cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
-const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { isAdmin, isAuth } = require('../services/auth');
+const uploadContr = {};
 
-const uploadRoute = express.Router();
-const upload = multer();
+const cloudinaryConfig = {
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+};
 
-uploadRoute.post( '/', isAuth, isAdmin, upload.single('image'), asyncHandler(async (req, res) => {
-    cloudinary.config({
-      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
-      api_secret: process.env.CLOUDINARY_API_SECRET,
+cloudinary.config(cloudinaryConfig);
+
+uploadContr.uploadSingleImageToCloudinary = asyncHandler(async (req, res) => {
+  if (!req.file) {
+    return res.status(400).send("No file provided.");
+  }
+
+  try {
+    const result = await uploadImage(req.file);
+    res.send(result);
+  } catch (error) {
+    console.error("Upload failed:", error);
+    res.status(500).send("An error occurred during the image upload.");
+  }
+});
+
+const uploadImage = (file) => {
+  const originalName = file.originalname;
+
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: 'image',
+        public_id: `mama_blog/${originalName}`, // Using original filename as public_id
+        use_filename: true,
+        unique_filename: false,
+        timeout: 120000
+      },
+      (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      }
+    );
+
+    const readStream = streamifier.createReadStream(file.buffer);
+    readStream.on('error', (error) => {
+      console.error("Stream error:", error);
+      reject(error);
     });
 
-    const streamUpload = (req) => {
-      return new Promise((resolve, reject) => {
-        const stream = cloudinary.uploader.upload_stream(
-          (error, result) => {
-            if (result) {
-              resolve(result);
-            } else {
-              reject(error);
-            }
-          }
-        );
-        streamifier.createReadStream(req.file.buffer).pipe(stream);
-      });
-    };
-    const result = await streamUpload(req);
-    res.send(result);
-  }
-  )
-);
+    readStream.pipe(stream);
+  });
+};
 
-// LOCAL UPLOAD
-// const storage = multer.diskStorage({
-//   destination(req, file, cb) {
-//     cb(null, 'uploads/');
-//   },
-//   filename(req, file, cb) {
-//     cb(null, `${Date.now()}.jpg`);
-//   },
-// });
+uploadContr.uploadSingleImageToStorage = asyncHandler(async (req, res) => {
+  res.send({ image: `/${req.file.path}` });
+});
 
-// const upload = multer({ storage });
-
-// uploadRoute.post('/', isAuth, upload.single('image'), (req, res) => {
-//   res.send({ image: `/${req.file.path}` });
-// });
-
-module.exports = uploadRoute;
+module.exports = uploadContr;

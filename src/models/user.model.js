@@ -25,7 +25,6 @@ const userSchema = new mongoose.Schema({
   },
   isAdmin: { type: Boolean, required: true, default: false },
   address: [addressSchema],
-  // phone: { type: String, required: true, default: '' },
   phone: { type: String, default: '' },
 }, { timeStamps: true });
 

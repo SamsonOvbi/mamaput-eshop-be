@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler');
 const CartModel = require("../models/cart.model");
-const OrderModel = require('../models/order.model');
 
 const cartContr = {};
 cartContr.getAllCarts = asyncHandler(async (req, res) => {

@@ -1,59 +1,47 @@
 "use strict";
 
-const dotenv =  require('dotenv');
+const dotenv = require('dotenv');
 dotenv.config();
 
-const multer = require('multer');
-const cloudinary = require('cloudinary');
-const streamifier = require('streamifier');
 const express = require('express');
-const asyncHandler = require('express-async-handler');
-const { isAdmin, isAuth } = require('../services/auth');
+const { isAuth } = require('../services/auth.service');
+const uploadContr = require('../controller/upload.controller');
 
 const uploadRoute = express.Router();
-const upload = multer();
 
-uploadRoute.post( '/', isAuth, isAdmin, upload.single('image'), asyncHandler(async (req, res) => {
-    cloudinary.config({
-      cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-      api_key: process.env.CLOUDINARY_API_KEY,
-      api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
+const multer = require('multer');
 
-    const streamUpload = (req) => {
-      return new Promise((resolve, reject) => {
-        const stream = cloudinary.uploader.upload_stream(
-          (error, result) => {
-            if (result) {
-              resolve(result);
-            } else {
-              reject(error);
-            }
-          }
-        );
-        streamifier.createReadStream(req.file.buffer).pipe(stream);
-      });
-    };
-    const result = await streamUpload(req);
-    res.send(result);
-  }
-  )
-);
+// Configure multer to store files in memory
+const { isAdmin } = require('../services/auth.service');
+const storage = multer.memoryStorage();
 
-// LOCAL UPLOAD
+// Configure multer to store files in disk
 // const storage = multer.diskStorage({
 //   destination(req, file, cb) {
 //     cb(null, 'uploads/');
 //   },
 //   filename(req, file, cb) {
-//     cb(null, `${Date.now()}.jpg`);
+//     const originalName = file.originalname;
+//     cb(null, `${Date.now()}-${originalName}`);
 //   },
 // });
 
-// const upload = multer({ storage });
+// const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 300 * 1024 }, // 300kB limit
+  fileFilter: function (req, file, cb) {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed!'), false);
+    }
+  }
+});
 
-// uploadRoute.post('/', isAuth, upload.single('image'), (req, res) => {
-//   res.send({ image: `/${req.file.path}` });
-// });
+
+uploadRoute.post('/', isAuth, isAdmin, upload.single('image'), uploadContr.uploadSingleImageToCloudinary);
+
+// uploadRoute.post('/', isAuth, upload.single('image'), uploadContr.uploadSingleImageToStorage);
 
 module.exports = uploadRoute;

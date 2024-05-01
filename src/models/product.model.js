@@ -3,7 +3,8 @@
 const mongoose = require("mongoose");
 
 const reviewSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  // name: { type: String, required: true },
+  username: { type: String, required: true },
   comment: { type: String, required: true },
   rating: { type: Number, required: true },
 }, { timeStamps: true });

@@ -15,7 +15,7 @@ var ShippingAddressSchema = new mongoose.Schema({
 
 var ItemSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  slug: { type: String, required: true, unique: true },
+  slug: { type: String, required: true, unique: false },
   quantity: { type: Number, required: true },
   image: { type: String, required: true },
   price: { type: Number, required: true },
