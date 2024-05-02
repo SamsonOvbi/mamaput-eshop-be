@@ -1,14 +1,14 @@
 # Mamaput E-Shop Backend
 
-This project is about creating a responsive e-commerce platform for a clothing line. This includes front-end and back-end development, Stripe and PayPal payment gateway, authentication system, Email notification, OpenStreetMap and Clouinary API intgration, as well as MongoDB Atlas database integration.
+This project is a responsive e-commerce platform for a clothing line. This includes front-end and back-end development, Stripe and PayPal payment gateway, authentication system, Email notification, OpenStreetMap and Clouinary API intgration, as well as MongoDB Atlas database integration.
 
 ## Getting Started
 
 To get started with this project, you will need to have the following tools and technologies installed with the specified versions:
 
-- git (version 2.34.1.windows.1)
-- Node.js (version 18.2.1)
-- npm (version 9.2.1)
+- git (>= version 2.34.1.windows.1)
+- Node.js (>= version 18.2.1)
+- npm (>= version 9.2.1)
 - MongoDB (>= version 6.0.2)
 
 ## Installation Backend
@@ -18,16 +18,18 @@ Clone the repository using:
 `git clone https://github.com/SamsonOvbi/mamaput-eshop.git`
 
 After cloning, navigate to the backend directory:
-cd mamaput-eshop/backend
+`cd mamaput-eshop/backend`
 
 Install the required dependencies:
 `npm install`
 
-## Usage
-
 To start the application, run the following command in your terminal:
 `npm start`
 This will start the server and the application will be accessible at <http://localhost:3000>.
+
+## Usage
+
+To use this project, follow the instructions below:
 
 ### How to Use the Application
 
