@@ -11,16 +11,11 @@ To get started with this project, you will need to have the following tools and 
 - npm (>= version 9.2.1)
 - MongoDB (>= version 6.0.2)
 - Angular CLI (>= version 16.2)
-
+2
 ## Clone the repository using
 
-`git clone https://github.com/SamsonOvbi/mamaput-eshop.git`
-<!-- git remote add origin https://github.com/<username>/<repository-name>.git   -->
-
-git remote add origin https://github.com/SamsonOvbi/mamaput-eshop.git
-git push origin master 
-
-
+git remote add origin <https://github.com/SamsonOvbi/mamaput-eshop.git>
+git push origin master
 
 ## Installation Backend
 
@@ -91,5 +86,4 @@ To use this project, follow the instructions below:
 ## License
 
 MIT License
-
-© 2023 [Samson Rerri], Some rights reserved.
+© 2023 [Samson Rerri], Some rights reserved
